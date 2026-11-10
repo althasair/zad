@@ -953,7 +953,7 @@ body:not(.noanno) .cl:has(u.kt){padding-top:62px}.cl-tag u.kt{text-decoration:no
     </header>
 
     <nav class="tabs" role="tablist" aria-label="أقسام المنصة">
-      <button role="tab" id="t-zad" aria-selected="false" data-v="zad">زاد الورشة</button>
+      <button role="tab" id="t-zad" aria-selected="false" data-v="zad">🎁 زاد</button>
       <button role="tab" id="t-home" aria-selected="true" data-v="home">الرئيسية</button>
       <button role="tab" id="t-lab" aria-selected="false" data-v="lab">المعمل الافتراضي</button>
       <button role="tab" id="t-show" aria-selected="false" data-v="show">العرض التقديمي</button>
@@ -2749,6 +2749,28 @@ body.noanno .labkaf{display:none!important}
 .z-chips button[aria-pressed="true"]{background:#7A1F35;border-color:#7A1F35;color:#fff}.z-chips button[aria-pressed="true"]:before{content:"✓ "}
 .z-row textarea{min-height:46px}
 #zPrint ul{margin:0;padding-inline-start:16px}
+.z-lay{display:grid;gap:16px;grid-template-columns:1fr}
+@media(min-width:900px){.z-lay{grid-template-columns:230px minmax(0,1fr);align-items:start}.z-side{position:sticky;top:70px;flex-direction:column}}
+.z-side{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
+.z-side button{flex:none;text-align:right;border:1px solid #E7D3BF;background:#fff;color:#7A1F35;border-radius:12px;padding:11px 14px;font-weight:800;font-size:15px;cursor:pointer;white-space:nowrap}
+.z-side button[aria-current="page"]{background:linear-gradient(160deg,#7A1F35,#561326);color:#fff;border-color:#561326;box-shadow:0 8px 18px -10px rgba(86,19,38,.7)}
+.z-pan .z-sec:first-child{margin-top:0}
+.z-q3{display:grid;gap:10px;margin-top:14px;grid-template-columns:1fr}@media(min-width:760px){.z-q3{grid-template-columns:repeat(3,1fr)}}
+.z-qc{text-align:right;border:1px solid #EBDCCF;background:#fff;border-radius:14px;padding:14px;cursor:pointer;display:grid;gap:4px;font:inherit}
+.z-qc i{font-style:normal;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#7A1F35;color:#F6DDB2;font-weight:800}.z-qc b{color:#7A1F35;font-size:16px}.z-qc span{color:#7A5A55;font-size:13.5px}
+.z-qc:hover{background:#FFF6EE}
+.z-gs{background:#fff;border:1px solid #EBDCCF;border-radius:14px;padding:14px 16px;margin-top:12px}.z-gs h4{margin:0 0 8px;color:#7A1F35;font-size:18px}
+.z-ol{margin:0;padding-inline-start:22px;display:grid;gap:6px;font-size:15px;line-height:1.8}
+.z-note{margin:10px 0 0;background:#F2F8F4;border:1px solid #CFE3D6;border-radius:10px;padding:8px 12px;font-size:14px;color:#1E4D36}
+.z-ways{display:grid;gap:10px;grid-template-columns:1fr}@media(min-width:760px){.z-ways{grid-template-columns:repeat(3,1fr)}}
+.z-ways div{background:#FFF9F3;border:1px solid #EFE2D6;border-radius:12px;padding:10px 12px;display:grid;gap:4px}.z-ways b{color:#7A1F35}.z-ways span{font-size:14px;line-height:1.75}
+.z-tb{width:100%;border-collapse:collapse;font-size:14px}.z-tb th,.z-tb td{border:1px solid #EFE2D6;padding:7px 9px;text-align:right;vertical-align:top}.z-tb th{background:#FBF1E8;color:#7A1F35}
+.z-faq details{border:1px solid #EFE2D6;border-radius:10px;padding:8px 12px;margin-bottom:6px;background:#FFFCF8}.z-faq summary{cursor:pointer;font-weight:800;color:#7A1F35}.z-faq p{margin:6px 0 0;font-size:14px;line-height:1.8}
+.z-cf{background:#fff;border:1px solid #EBDCCF;border-radius:14px;padding:14px;display:grid;gap:10px;margin-top:10px}.z-cf label{display:grid;gap:4px;font-weight:800;color:#7A1F35;font-size:14px}.z-cf label span{font-weight:600;color:#7A5A55;font-size:12.5px}
+.z-cf input,.z-cf textarea{width:100%;border:1px solid #E7D3BF;border-radius:10px;padding:8px 10px;font:inherit;background:#FFFCF8}.z-cf textarea{min-height:150px}
+.z-cls{display:grid;gap:10px;margin-top:12px;grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+.z-ck{background:#fff;border:1px solid #EBDCCF;border-radius:12px;padding:12px;display:grid;gap:4px}.z-ck.on{border-color:#7A1F35;box-shadow:0 0 0 2px rgba(122,31,53,.15)}
+.z-ck b{color:#7A1F35;font-size:18px}.z-ck span{color:#7A5A55;font-size:13px}.z-ck .r{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}.z-ck .r button{border:1px solid #E7D3BF;background:#FFFCF8;border-radius:999px;padding:4px 10px;font-weight:700;cursor:pointer;color:#7A1F35;font-size:12.5px}
 #zPrint{display:none}
 @media print{body.zprint>*:not(#zPrint){display:none!important}body.zprint #zPrint{display:block}body.zprint{background:#fff}
  #zPrint{font-family:var(--f-ui);color:#222;direction:rtl}#zPrint h1{font-family:var(--f-ruqaa);color:#7A1F35;margin:0 0 4px;font-size:26px}#zPrint .m{color:#666;font-size:12px;margin-bottom:10px}
@@ -2870,6 +2892,65 @@ const esc=t=>String(t||'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt
 const cell=i=>{const c=(P.c||[])[i]||[],t=(P.t||[])[i]||'';return (c.length?`<ul>${c.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:'')+(t.trim()?`<div>${esc(t)}</div>`:'')};
 Z.querySelector('#pPrint').onclick=()=>{save();pr.innerHTML=`<h1>مخطّط حصتي بالمحاور التسعة</h1><div class="m">زاد · هدية ملتقى «يوم فيزيائي استثنائي» · مدرسة الشيماء الثانوية للبنات · قسم الفيزياء</div><table><tr><th>الدرس</th><td>${esc(P.L)}</td></tr><tr><th>الهدف</th><td>${esc(P.G)}</td></tr>${ROWN.map((a,i)=>`<tr><th>${i<9?(i+1)+'. ':''}${a}</th><td>${cell(i)}</td></tr>`).join('')}</table>`;
  document.body.classList.add('zprint');setTimeout(()=>{window.print();setTimeout(()=>document.body.classList.remove('zprint'),500)},50)};
+/* layout: right-side menu with panels */
+(function(){
+ const hero=Z.querySelector('.z-hero'),map=Z.querySelector('.z-map'),end=Z.querySelector('.z-end');if(map)map.remove();
+ const S=id=>Z.querySelector('#'+id);
+ const P=[['home','🏠 البداية'],['guide','📘 دليل المعلمة'],['class','👩‍🎓 صفوفي وطالباتي'],['labs','🔬 المعامل الخمسة'],['plan','✍️ خطّطي حصتكِ'],['ref','📚 مرجع الورشة']];
+ const lay=document.createElement('div');lay.className='z-lay';
+ lay.innerHTML=`<nav class="z-side" aria-label="أقسام زاد">${P.map(p=>`<button type="button" data-z="${p[0]}">${p[1]}</button>`).join('')}</nav><div class="z-main">${P.map(p=>`<div class="z-pan" id="zp-${p[0]}" hidden></div>`).join('')}</div>`;
+ const pan=k=>lay.querySelector('#zp-'+k);
+ pan('home').append(hero);
+ pan('home').insertAdjacentHTML('beforeend',`<div class="z-q3">
+  <button type="button" class="z-qc" data-go="guide"><i>1</i><b>اقرئي دليل المعلمة</b><span>كيف تستخدمين المعامل مع طالباتكِ خطوة بخطوة</span></button>
+  <button type="button" class="z-qc" data-go="class"><i>2</i><b>أضيفي صفوفكِ وطالباتكِ</b><span>مرة واحدة، وتبقى محفوظة على جهازكِ وحدكِ</span></button>
+  <button type="button" class="z-qc" data-go="lab"><i>3</i><b>ابدئي المعمل مع صفّكِ</b><span>«وضع الطالبات»، والتشجيع باسم كل طالبة</span></button></div>`);
+ if(end)pan('home').append(end);
+ const G=(t,body)=>`<div class="z-gs"><h4>${t}</h4>${body}</div>`;
+ const OL=a=>`<ol class="z-ol">${a.map(x=>`<li>${x}</li>`).join('')}</ol>`;
+ pan('guide').innerHTML=`<div class="z-h"><h3>دليل المعلمة</h3></div><p class="z-sub">«زاد» هديتكِ من قسم الفيزياء بمدرسة الشيماء: خمسة معامل افتراضية من كتاب الصف الحادي عشر، جاهزة لتستخدميها مع طالباتكِ في مدرستكِ، من أي جهاز فيه متصفح، دون تسجيل دخول.</p>`+
+ G('أولاً: قبل الحصة (مرة واحدة)',OL(['افتحي الرابط <b dir="ltr">zad.alshaimaa-school.com</b> من الجهاز الذي ستعرضين منه في الصف.','اضغطي «👩‍🎓 صفوفي وطالباتي» من القائمة.','اكتبي اسم الصف، مثل <b dir="ltr">11-3</b>.','الصقي أسماء طالبات الصف، كل اسم في سطر.','اضغطي «حفظ الصف»، وكرّري ذلك لكل صفوفكِ.'])+`<p class="z-note">🔒 الأسماء تُحفظ على هذا الجهاز وهذا المتصفح فقط، فلا تراها أي معلمة أخرى ولا تُرسل إلى أي خادم. إذا استخدمتِ جهازاً آخر، أدخلي الأسماء عليه مرة واحدة.</p>`)+
+ G('ثانياً: في الحصة',OL(['اضغطي «المعمل الافتراضي» في أعلى الصفحة.','اضغطي «👩‍🎓 وضع الطالبات».','اختاري الصف من قائمة «الصف».','اختاري المحطة المرتبطة بدرسكِ.','اختاري «الطالبة الآن»، أو اضغطي «🎲 عشوائي» لتختار المنصة طالبة.','تجيب الطالبة، وعند كل إجابة صحيحة تظهر بطاقة «أحسنتِ يا …» باسمها.','اضغطي «التالية ◀» لتنتقل الكلمة إلى الطالبة التالية.']))+
+ G('ثالثاً: ثلاث طرق للتشغيل',`<div class="z-ways"><div><b>🖥 جهاز العرض</b><span>على السبورة الذكية أو البروجكتر؛ تتناوب الطالبات، والصف كله يتابع ويناقش. الأنسب للحصة.</span></div><div><b>👥 جهاز لكل مجموعة</b><span>تفتح كل مجموعة الرابط على جهاز، وتضيف صفاً باسم المجموعة فيه أسماء عضواتها.</span></div><div><b>📱 جوال كل طالبة</b><span>للمراجعة أو الواجب؛ تفتح الطالبة الرابط وتجرّب المحطة بنفسها في البيت.</span></div></div>`)+
+ G('رابعاً: مراحل كل محطة… ودوركِ فيها',`<table class="z-tb"><tr><th>المرحلة</th><th>ماذا تفعل الطالبة</th><th>دوركِ</th></tr>
+  <tr><td>1. التوقّع</td><td>تختار توقّعها قبل التجربة</td><td>اجمعي التوقعات، ولا تصحّحي الآن؛ التجربة هي الحَكَم</td></tr>
+  <tr><td>2. التجربة</td><td>تتحكّم في الدائرة وتقرأ القياسات</td><td>اسألي: ماذا لاحظتِ؟ ولماذا؟</td></tr>
+  <tr><td>3. تحدّي القراءة</td><td>تكتب قراءة دقيقة من الجهاز</td><td>ذكّريها: القراءة من الجهاز لا من القانون</td></tr>
+  <tr><td>4. تحدّي المستويات</td><td>مستكشفة ← محلّلة ← مبتكرة</td><td>شجّعيها أن تبدأ من مستواها ثم ترتقي</td></tr>
+  <tr><td>5. تحقّقي من Copilot</td><td>تحكم على ادّعاء فيه خطأ</td><td>ناقشي: كيف أثبتت التجربة الخطأ؟</td></tr></table>`)+
+ G('خامساً: اربطي المحطة بدرسكِ',`<table class="z-tb"><tr><th>المحطة</th><th>صفحة الكتاب</th><th>الوقت المقترح</th></tr>${(typeof ST!=='undefined'?ST:[]).map((s,k)=>`<tr><td>${k+1}. ${s[0]}</td><td>ص ${s[2]}</td><td>15 – 20 دقيقة</td></tr>`).join('')}</table>`)+
+ G('سادساً: وضع المعلمة ووضع الطالبات',`<div class="z-ways"><div><b>👩‍🏫 وضع المعلمة</b><span>لكِ وحدكِ عند التحضير: فيه «وقفة تأمل للمعلمة» بعد كل مرحلة، وزر يُظهر أسهم المحاور التسعة.</span></div><div><b>👩‍🎓 وضع الطالبات</b><span>للعرض في الصف: واجهة نظيفة، ومستويات بأسماء محفّزة، وتشجيع باسم كل طالبة.</span></div></div>`)+
+ G('أسئلة شائعة',`<div class="z-faq"><details><summary>هل تحتاج المنصة تسجيل دخول أو تطبيقاً؟</summary><p>لا؛ يكفي فتح الرابط من أي متصفح على حاسب أو جوال أو سبورة ذكية.</p></details>
+  <details><summary>لماذا لا تظهر أسماء طالباتي على جهاز آخر؟</summary><p>لأنها محفوظة على الجهاز الذي أدخلتِها منه فقط، حفاظاً على خصوصية الطالبات. أدخليها مرة واحدة على كل جهاز تستخدمينه.</p></details>
+  <details><summary>هل تراها زميلاتي اللواتي يستخدمن الرابط نفسه؟</summary><p>لا؛ كل معلمة ترى صفوفها وأسماءها على جهازها فقط.</p></details>
+  <details><summary>هل في المعمل وقت أو نقاط؟</summary><p>لا؛ تجربة هادئة تعيدها الطالبة متى شاءت.</p></details>
+  <details><summary>كيف أخطّط حصة بالمحاور التسعة؟</summary><p>من «✍️ خطّطي حصتكِ»: اختاري الدرس والهدف وأفكار كل محور، ثم اطبعي المخطّط.</p></details></div>`);
+ pan('class').innerHTML=`<div class="z-h"><h3>صفوفي وطالباتي</h3></div><p class="z-sub">أضيفي كل صف بأسماء طالباته؛ ستظهر الأسماء في «وضع الطالبات» داخل المعمل، وتُشجَّع كل طالبة باسمها.</p>
+  <p class="z-note">🔒 تُحفظ على جهازكِ هذا فقط؛ لا تراها أي معلمة أخرى ولا تُرسل إلى أي خادم.</p>
+  <div class="z-cf"><label>اسم الصف<input id="zcN" dir="auto" placeholder="مثال: 11-3"></label><label>أسماء الطالبات <span>كل اسم في سطر</span><textarea id="zcT" placeholder="نورة&#10;مريم&#10;شيخة"></textarea></label>
+  <div class="z-act"><button type="button" class="p" id="zcS">حفظ الصف</button><button type="button" class="g" id="zcC">صف جديد</button></div></div><div class="z-cls" id="zcL"></div>`;
+ const cN=pan('class').querySelector('#zcN'),cT=pan('class').querySelector('#zcT');
+ window.zRenderClasses=function(){if(!window.zCL)return;const C=window.zCL.get(),ks=Object.keys(C.list);const L=pan('class').querySelector('#zcL');
+  L.innerHTML=ks.length?ks.map(k=>`<div class="z-ck${k===C.cur?' on':''}"><b><bdi>${k.replace(/[<>&]/g,'')}</bdi></b><span>${C.list[k].length} طالبة</span><div class="r"><button type="button" data-u="${encodeURIComponent(k)}">${k===C.cur?'✓ الصف الحالي':'اختياره'}</button><button type="button" data-e="${encodeURIComponent(k)}">تعديل</button><button type="button" data-d="${encodeURIComponent(k)}">حذف</button></div></div>`).join(''):'<p class="z-sub">لم تُضَف صفوف بعد.</p>';
+  L.querySelectorAll('[data-u]').forEach(b=>b.onclick=()=>{const C=window.zCL.get();C.cur=decodeURIComponent(b.dataset.u);window.zCL.set(C)});
+  L.querySelectorAll('[data-e]').forEach(b=>b.onclick=()=>{const k=decodeURIComponent(b.dataset.e),C=window.zCL.get();cN.value=k;cT.value=(C.list[k]||[]).join('\n');cN.focus()});
+  L.querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>{if(!b.dataset.arm){b.dataset.arm=1;b.textContent='اضغطي للتأكيد';setTimeout(()=>{delete b.dataset.arm;b.textContent='حذف'},4000);return}const k=decodeURIComponent(b.dataset.d),C=window.zCL.get();delete C.list[k];if(C.cur===k)C.cur=Object.keys(C.list)[0]||'';window.zCL.set(C)})};
+ pan('class').querySelector('#zcS').onclick=()=>{const k=cN.value.trim(),N=cT.value.split('\n').map(x=>x.trim()).filter(Boolean).slice(0,60);if(!k||!N.length){cN.focus();return}const C=window.zCL.get();C.list[k]=N;C.cur=k;window.zCL.set(C);const b=pan('class').querySelector('#zcS');b.textContent='✓ حُفظ';setTimeout(()=>b.textContent='حفظ الصف',1500)};
+ pan('class').querySelector('#zcC').onclick=()=>{cN.value='';cT.value='';cN.focus()};
+ pan('labs').append(S('z9'));pan('labs').insertAdjacentHTML('beforeend',`<div class="z-act" style="justify-content:flex-start"><button type="button" class="p" data-go="lab">🔬 افتحي المعمل الآن</button><button type="button" class="g" data-go="guide">📘 كيف أستخدمه مع طالباتي؟</button></div>`);
+ pan('plan').append(S('z10'));
+ pan('ref').innerHTML=`<p class="z-sub" style="margin-top:4px">خلاصة ما عشناه في ورشة «آفاق»؛ مرجعٌ تعودين إليه حين تخطّطين حصتكِ بالمحاور التسعة.</p>`;
+ ['z1','z2','z3','z4','z5','z6','z7','z8'].forEach((id,i)=>{const s=S(id);if(!s)return;const n=s.querySelector('.z-h i');if(n)n.textContent=i+1;pan('ref').append(s)});
+ ['z9','z10'].forEach(id=>{const s=lay.querySelector('#'+id+' .z-h i');if(s)s.remove()});
+ Z.innerHTML='';Z.append(lay);
+ window.zGo=k=>{if(k==='lab'){document.querySelector('[data-v="lab"]').click();try{showPicker()}catch(e){}return}
+  if(document.getElementById('v-zad').hidden)document.querySelector('[data-v="zad"]').click();
+  lay.querySelectorAll('.z-side button').forEach(b=>b.setAttribute('aria-current',b.dataset.z===k?'page':'false'));lay.querySelectorAll('.z-pan').forEach(p=>p.hidden=p.id!=='zp-'+k);
+  try{localStorage.setItem('zad-pan',k)}catch(e){}const t=Z.getBoundingClientRect().top+window.scrollY-70;if(window.scrollY>t)window.scrollTo({top:t,behavior:'smooth'})};
+ lay.querySelectorAll('.z-side button').forEach(b=>b.onclick=()=>window.zGo(b.dataset.z));
+ lay.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(g)window.zGo(g.dataset.go)});
+ let k0='home';try{k0=localStorage.getItem('zad-pan')||'home'}catch(e){}if(!P.some(p=>p[0]===k0))k0='home';window.zGo(k0);
+})();
 /* presentation: drop live/event-only slides (original indexes) */
 try{[46,43,42,41,34,33,27,26,25,24,23,22,21,20,19,18,16,15,14,13,12,10,5,3].forEach(i=>SLIDES.splice(i,1))}catch(e){}
 /* labs: calm practice mode — no timers, no points, no group talk */
@@ -2884,27 +2965,36 @@ try{
 
 /* student mode: private names on this device, motivating levels, praise */
 try{
- const SK='zad-students',MK='zad-mode';let SN=[];try{SN=JSON.parse(localStorage.getItem(SK)||'[]')}catch(e){}
+ const CK='zad-classes',MK='zad-mode';
+ let CL={cur:'',list:{}};try{CL=JSON.parse(localStorage.getItem(CK)||'null')||CL}catch(e){}
+ try{const old=JSON.parse(localStorage.getItem('zad-students')||'[]');if(old.length&&!Object.keys(CL.list).length){CL.list['صفّي']=old;CL.cur='صفّي'}}catch(e){}
+ const saveCL=()=>{try{localStorage.setItem(CK,JSON.stringify(CL))}catch(e){}};
+ const names=()=>CL.list[CL.cur]||[];
  let SM=false;try{SM=localStorage.getItem(MK)==='s'}catch(e){}
  const STN=['المهمة المتمايزة','تحدّي المستويات'];
  const lab=document.getElementById('v-lab');const bar=document.createElement('div');bar.className='z-sbar';
  bar.innerHTML=`<div class="z-seg" role="group" aria-label="وضع المعمل"><button type="button" data-m="t">👩‍🏫 وضع المعلمة</button><button type="button" data-m="s">👩‍🎓 وضع الطالبات</button></div>
-  <div class="z-who" id="zWho"><span>الطالبة الآن:</span><select id="zStu" aria-label="الطالبة الآن"></select><button type="button" id="zNext">التالية ◀</button><button type="button" id="zNames">✏️ أسماء طالباتي</button></div>`;
- const nb=document.createElement('div');nb.className='z-nb';nb.hidden=true;
- nb.innerHTML=`<b style="color:#7A1F35">أسماء طالباتي</b><small>اكتبي اسم كل طالبة في سطر. تُحفظ الأسماء على جهازكِ هذا فقط، ولا تصل إلى أي معلمة أخرى ولا إلى أي خادم.</small><textarea id="zNT" placeholder="نورة&#10;مريم&#10;شيخة"></textarea><div class="r"><button type="button" id="zNS">حفظ الأسماء</button></div>`;
- lab.prepend(nb);lab.prepend(bar);
- const sel=bar.querySelector('#zStu');
- const fill=()=>{const cur=sel.value;sel.innerHTML=(SN.length?SN:['بطلتنا']).map(n=>`<option>${n.replace(/</g,'')}</option>`).join('');if(SN.includes(cur))sel.value=cur};
+  <div class="z-who" id="zWho"><span>الصف:</span><select id="zCls" aria-label="الصف"></select><span>الطالبة الآن:</span><select id="zStu" aria-label="الطالبة الآن"></select><button type="button" id="zNext">التالية ◀</button><button type="button" id="zRnd">🎲 عشوائي</button><button type="button" id="zNames">✏️ صفوفي وطالباتي</button></div>`;
+ lab.prepend(bar);
+ const sel=bar.querySelector('#zStu'),csel=bar.querySelector('#zCls');
+ const e2=t=>String(t).replace(/[<>&"]/g,'');
+ const fill=()=>{const ks=Object.keys(CL.list);csel.innerHTML=ks.length?ks.map(k=>`<option value="${e2(k)}">${e2(k)}</option>`).join(''):'<option value="">لم تُضَف صفوف بعد</option>';if(CL.cur)csel.value=CL.cur;
+  const cur=sel.value,N=names();sel.innerHTML=(N.length?N:['بطلتنا']).map(n=>`<option>${e2(n)}</option>`).join('');if(N.includes(cur))sel.value=cur;
+  try{window.zRenderClasses&&window.zRenderClasses()}catch(e){}};
+ window.zCL={get:()=>CL,set:c=>{CL=c;saveCL();fill()}};
+ csel.onchange=()=>{CL.cur=csel.value;saveCL();fill()};
  let ANN=false;try{ANN=localStorage.getItem('zad-anno')==='1'}catch(e){}
  document.addEventListener('click',e=>{if(e.target.closest&&e.target.closest('#annT'))setTimeout(()=>{if(!SM){ANN=!document.body.classList.contains('noanno');try{localStorage.setItem('zad-anno',ANN?'1':'0')}catch(e){}}},0)},true);
  const apply=()=>{document.body.classList.toggle('smode',SM);document.body.classList.toggle('noanno',SM||!ANN);window.LVN3=SM?['🔭 مستكشفة','🧩 محلّلة','💡 مبتكرة']:null;
   try{STEPS[3]=STN[SM?1:0];STEPN[3]=STN[SM?1:0]}catch(e){}
-  bar.querySelectorAll('[data-m]').forEach(b=>b.setAttribute('aria-pressed',(b.dataset.m==='s')===SM));bar.querySelector('#zWho').hidden=!SM;if(!SM)nb.hidden=true;
+  bar.querySelectorAll('[data-m]').forEach(b=>b.setAttribute('aria-pressed',(b.dataset.m==='s')===SM));bar.querySelector('#zWho').hidden=!SM;
   try{if(curSt!=null&&!$('#lab-vd').hidden)runStation(curSt)}catch(e){}};
- bar.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{SM=b.dataset.m==='s';try{localStorage.setItem(MK,SM?'s':'t')}catch(e){}apply()});
- bar.querySelector('#zNames').onclick=()=>{nb.hidden=!nb.hidden;nb.querySelector('#zNT').value=SN.join('\n')};
- nb.querySelector('#zNS').onclick=()=>{SN=nb.querySelector('#zNT').value.split('\n').map(x=>x.trim()).filter(Boolean).slice(0,60);try{localStorage.setItem(SK,JSON.stringify(SN))}catch(e){}fill();nb.hidden=true};
+ window.zSetMode=m=>{SM=m==='s';try{localStorage.setItem(MK,SM?'s':'t')}catch(e){}apply()};
+ bar.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>window.zSetMode(b.dataset.m));
+ bar.querySelector('#zNames').onclick=()=>{try{window.zGo&&window.zGo('class')}catch(e){}};
  bar.querySelector('#zNext').onclick=()=>{if(!sel.options.length)return;sel.selectedIndex=(sel.selectedIndex+1)%sel.options.length};
+ const turn=document.createElement('div');turn.className='z-praise';document.body.appendChild(turn);
+ bar.querySelector('#zRnd').onclick=()=>{const n=sel.options.length;if(!n)return;let k=0;const spin=setInterval(()=>{sel.selectedIndex=Math.floor(Math.random()*n);k++;if(k>12){clearInterval(spin);turn.innerHTML=`<b>دوركِ يا ${sel.value}!</b><span>تفضّلي… المعمل بين يديكِ 🔬</span>`;turn.classList.add('on');setTimeout(()=>turn.classList.remove('on'),2200)}},90)};
  fill();apply();
  const PR=['إجابة عالمة فيزياء! 🔬','عقلٌ مضيء كالمصباح في دائرتكِ 💡','تفكيركِ يسري كالتيار… بلا مقاومة ⚡','هكذا تفكّر المبدعات 👑','دقّة تستحق التصفيق 👏','نجمةٌ في سماء الفيزياء 🌟','أنتِ قدّها… والقادم أجمل ✨'];
  const pz=document.createElement('div');pz.className='z-praise';pz.setAttribute('aria-live','polite');document.body.appendChild(pz);let pzT=0;
