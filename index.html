@@ -2742,6 +2742,12 @@ body.gift .scorebar{display:none!important}
 body.smode .reflect,body.smode .labkaf,body.smode #annT{display:none!important}
 .z-praise{position:fixed;left:50%;top:38%;transform:translate(-50%,-50%) scale(.6);opacity:0;z-index:95;pointer-events:none;text-align:center;background:linear-gradient(160deg,#7A1F35,#561326);color:#fff;border:2px solid #F1D9A0;border-radius:22px;padding:18px 26px;box-shadow:0 20px 50px rgba(86,19,38,.45);transition:.35s cubic-bezier(.2,.9,.3,1.3);max-width:90vw}
 .z-praise.on{opacity:1;transform:translate(-50%,-50%) scale(1)}.z-praise b{display:block;font-family:var(--f-ruqaa);font-size:clamp(30px,6vw,46px);color:#F1D9A0;line-height:1.2}.z-praise span{font-size:clamp(16px,3vw,20px);font-weight:700}
+.z-hint{margin:0 0 10px;color:rgba(179,38,62,.62);font-size:13px;font-weight:700}
+.z-row{border:1px solid #EFE2D6;border-radius:12px;padding:10px;background:#FFFCF8;display:grid;gap:8px}.z-row .hd{font-weight:800;color:var(--m);font-size:14.5px}.z-row .hd span{display:block;font-weight:600;color:var(--mu);font-size:12.5px}
+.z-chips{display:flex;flex-wrap:wrap;gap:6px}.z-chips button{border:1px solid #E7D3BF;background:#fff;color:var(--tx);border-radius:999px;padding:5px 11px;font-size:13px;cursor:pointer;text-align:right;line-height:1.5}
+.z-chips button[aria-pressed="true"]{background:#7A1F35;border-color:#7A1F35;color:#fff}.z-chips button[aria-pressed="true"]:before{content:"✓ "}
+.z-row textarea{min-height:46px}
+#zPrint ul{margin:0;padding-inline-start:16px}
 #zPrint{display:none}
 @media print{body.zprint>*:not(#zPrint){display:none!important}body.zprint #zPrint{display:block}body.zprint{background:#fff}
  #zPrint{font-family:var(--f-ui);color:#222;direction:rtl}#zPrint h1{font-family:var(--f-ruqaa);color:#7A1F35;margin:0 0 4px;font-size:26px}#zPrint .m{color:#666;font-size:12px;margin-bottom:10px}
@@ -2813,10 +2819,28 @@ h+=H('المعامل الافتراضية الخمسة','كل محطة بأنش�
  ST2.map((s,k)=>{const e=EN[k]||{};return `<div class="z-sn"><div class="im" style="background-image:url(${(e.img||[])[0]||''})"></div><div class="bd"><span class="k">المحطة ${k+1} · الكتاب ص ${s[2]}</span><b>${s[0]}</b>
  ${e.real?`<div class="rw"><i>من الحياة:</i> ${e.real}</div>`:''}${e.qa?`<div class="rw"><i>من قطر:</i> ${e.qa}</div>`:''}${e.su?`<div class="rw"><i>الاستدامة:</i> ${e.su}</div>`:''}
  <button type="button" class="go" data-k="${k}">🔬 ادخلي المعمل</button></div></div>`}).join('')+`</div></section>`;
-h+=H('خطّطي حصتكِ القادمة بالمحاور التسعة','اختاري درساً وهدفاً واحداً، واكتبي كيف سيسكنه كل محور، ثم اطبعي مخطّطكِ. يُحفظ ما تكتبينه على جهازكِ.','z10')+`<div class="z-pl">
- <div class="top"><label>الدرس<input id="pL" placeholder="مثال: أشباه الموصلات"></label><label>الهدف<input id="pG" placeholder="مثال: أن تفسّر الطالبة تكوّن شبه الموصل من النوع السالب n"></label></div>
- <div class="z-rows">${AXN.map((a,i)=>`<label>${i+1}. ${a} <span>${PQ[i]}</span><textarea data-p="${i}"></textarea></label>`).join('')}
- <label>الآية والقيمة <span>آية تربط المفهوم بالقرآن الكريم، وقيمة تسكن الشرح</span><textarea data-p="9"></textarea></label></div>
+const LES={"أشباه الموصلات (حصة أ. سارة)":["أن تصنّف الطالبة المواد إلى موصلات وأشباه موصلات وعوازل","أن تفسّر الطالبة تكوّن شبه الموصل من النوع السالب n","أن تفسّر الطالبة تكوّن شبه الموصل من النوع الموجب p"],
+ "الدايود والترانزستور · ص 92–93":["أن تفسّر الطالبة عمل الدايود في الانحياز الأمامي والعكسي","أن توضّح الطالبة عمل الترانزستور مفتاحاً إلكترونياً"],
+ "دائرة مجزئ الجهد · ص 98":["أن تحسب الطالبة الجهد الخارج من مجزئ الجهد","أن تصمّم الطالبة مجزئ جهد يشغّل جهازاً بجهد أقل من جهد المصدر"],
+ "مقياس الجهد الانزلاقي · ص 101":["أن تستنتج الطالبة العلاقة بين الجهد وطول السلك","أن توظّف الطالبة مقياس الجهد الانزلاقي في التحكم بالجهد"],
+ "المقاومة الضوئية والحرارية · ص 102–103":["أن تفسّر الطالبة تغيّر مقاومة المقاومة الضوئية مع شدة الضوء","أن تفسّر الطالبة تغيّر مقاومة المقاومة الحرارية مع درجة الحرارة","أن تصمّم الطالبة دائرة إنارة تعمل تلقائياً عند الغروب"],
+ "البوابات المنطقية · ص 109–111":["أن تكمل الطالبة جدول الحقيقة للبوابات المنطقية","أن توظّف الطالبة البوابات المنطقية في تصميم نظام تحكم بسيط"]};
+const IDEAS=[["نمذجة بالجسد أو المجسّمات","محاكاة أو معمل افتراضي تتحكّم فيه الطالبة","رسم أو صورة توضيحية","جدول قراءات ورسم بياني","نقاش في مجموعات"],
+ ["سؤال واحد بثلاثة مستويات: مستكشفة · محلّلة · مبتكرة","حرية الارتقاء من مستوى إلى أعلى","بطاقة مساندة للمستوى الأول","مهمة تصميم مفتوحة للمستوى المبتكر"],
+ ["ما تحقق + الدليل + الخطوة التالية","تغذية فورية بعد كل إجابة على المنصة","تقييم الأقران بمعيار واضح","إعادة المحاولة بعد التغذية الراجعة"],
+ ["سؤال توقّع قبل التجربة (قبلي)","تحدٍّ عملي أثناء التجربة (أدائي)","بطاقات إجابة ومسحها للصف كله","قراءة من الجهاز في وقت محدد","بطاقة خروج (ختامي)"],
+ ["ادّعاء من Copilot فيه خطأ تحكم عليه الطالبة بالتجربة","سؤال للذكاء الاصطناعي ثم التحقق من إجابته بمصدر علمي","مقارنة إجابة الطالبة بإجابة الذكاء الاصطناعي"],
+ ["البدء بمشكلة أو جهاز من الحياة","مثال من البيت أو المدرسة","صورة أو فيديو لتطبيق حقيقي"],
+ ["حساب الطاقة التي يوفّرها التطبيق","تصميم حل لترشيد الكهرباء في المدرسة","ربط المفهوم بالطاقة المتجددة"],
+ ["محطة الخرسعة للطاقة الشمسية","استاد البيت وتقنيات التبريد","إنارة شوارع الدوحة الذكية","متاحف قطر ومنشآتها الحديثة","رؤية قطر الوطنية 2030"],
+ KAF.slice(),
+ ["﴿إِنَّا كُلَّ شَيْءٍ خَلَقْنَاهُ بِقَدَرٍ﴾ · الإتقان والدقة","﴿إِنَّ اللَّهَ يَأْمُرُكُمْ أَن تُؤَدُّوا الْأَمَانَاتِ إِلَىٰ أَهْلِهَا﴾ · الأمانة العلمية","﴿وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَىٰ﴾ · التعاون","﴿وَقُل رَّبِّ زِدْنِي عِلْمًا﴾ · طلب العلم","﴿وَلَا تُسْرِفُوا﴾ · ترشيد الاستهلاك","﴿سَنُرِيهِمْ آيَاتِنَا فِي الْآفَاقِ﴾ · التفكّر في الكون"]];
+const ROWN=[...AXN,'الآية والقيمة'],ROWQ=[...PQ,'آية تربط المفهوم بالقرآن الكريم، وقيمة تسكن الشرح'];
+h+=H('خطّطي حصتكِ القادمة بالمحاور التسعة','اختاري الدرس والهدف، ثم اختاري لكل محور فكرة أو أكثر، وأضيفي بعباراتكِ ما تريدين، ثم اطبعي مخطّطكِ. يُحفظ ما تختارينه على جهازكِ.','z10')+`<div class="z-pl">
+ <p class="z-hint">معلمتي الغالية، يمكنكِ الاختيار من القائمة أو الكتابة بعباراتكِ التي تجدينها مناسبة</p>
+ <div class="top"><label>الدرس<input id="pL" list="pLl" placeholder="اختاري الدرس أو اكتبيه"><datalist id="pLl">${Object.keys(LES).map(x=>`<option value="${x}">`).join('')}</datalist></label>
+ <label>الهدف<input id="pG" list="pGl" placeholder="اختاري الهدف أو اكتبيه"><datalist id="pGl"></datalist></label></div>
+ <div class="z-rows">${ROWN.map((a,i)=>`<div class="z-row"><div class="hd">${i<9?(i+1)+'. ':''}${a} <span>${ROWQ[i]}</span></div><div class="z-chips" data-c="${i}">${IDEAS[i].map(x=>`<button type="button" aria-pressed="false">${x}</button>`).join('')}</div><textarea data-p="${i}" placeholder="أو اكتبي بعباراتكِ…"></textarea></div>`).join('')}</div>
  <div class="z-act"><button type="button" class="p" id="pPrint">🖨 اطبعي مخطّطكِ</button><button type="button" class="g" id="pEx">املئي بمثال حصة أ. سارة</button><button type="button" class="g" id="pClr">مسح</button></div></div></section>`;
 h+=`<div class="z-end"><div class="t">شكراً لأنكِ كنتِ معنا</div><p>كنتِ إضافةً جميلة في «يوم فيزيائي استثنائي»، ونرجو أن يكون هذا الزاد عوناً لكِ في صفّكِ، ونوراً لطالباتكِ؛ ﴿وَقُل رَّبِّ زِدْنِي عِلْمًا﴾.</p><div class="s">مدرسة الشيماء الثانوية للبنات · قسم الفيزياء · 10 نوفمبر 2026</div></div>`;
 Z.innerHTML=h;
@@ -2827,16 +2851,23 @@ Z.querySelectorAll('.z-sn .go').forEach(b=>b.onclick=()=>{document.querySelector
 Z.querySelectorAll('.z-map a').forEach(a=>a.onclick=e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})});
 /* planner */
 const K='zad-plan';let P={};try{P=JSON.parse(localStorage.getItem(K)||'{}')}catch(e){}
-const F=()=>({L:Z.querySelector('#pL'),G:Z.querySelector('#pG'),T:[...Z.querySelectorAll('[data-p]')]});
-const load=()=>{const f=F();f.L.value=P.L||'';f.G.value=P.G||'';f.T.forEach(t=>t.value=(P.t||[])[+t.dataset.p]||'')};
-const save=()=>{const f=F();P={L:f.L.value,G:f.G.value,t:f.T.map(t=>t.value)};try{localStorage.setItem(K,JSON.stringify(P))}catch(e){}};
-load();Z.querySelectorAll('#pL,#pG,[data-p]').forEach(x=>x.addEventListener('input',save));
-Z.querySelector('#pEx').onclick=()=>{const f=F();if(f.T.some(t=>t.value.trim())&&!confirmSoft())return;f.L.value='أشباه الموصلات · الصف الحادي عشر';f.G.value='أن تفسّر الطالبة تكوّن شبه الموصل من النوع السالب n';f.T.forEach(t=>{const i=+t.dataset.p;t.value=i<9?plain(SARA[i][0]):'﴿إِنَّ اللَّهَ يَأْمُرُكُمْ أَن تُؤَدُّوا الْأَمَانَاتِ إِلَىٰ أَهْلِهَا﴾ · الأمانة العلمية: نسجّل القراءة كما ظهرت، لا كما توقّعناها'});save()};
-function confirmSoft(){const b=Z.querySelector('#pEx');if(b.dataset.arm){delete b.dataset.arm;b.textContent='املئي بمثال حصة أ. سارة';return true}b.dataset.arm=1;b.textContent='سيُستبدل ما كتبتِه… اضغطي مرة أخرى للتأكيد';setTimeout(()=>{delete b.dataset.arm;b.textContent='املئي بمثال حصة أ. سارة'},5000);return false}
-Z.querySelector('#pClr').onclick=()=>{const b=Z.querySelector('#pClr');if(!b.dataset.arm){b.dataset.arm=1;b.textContent='اضغطي مرة أخرى للمسح';setTimeout(()=>{delete b.dataset.arm;b.textContent='مسح'},4000);return}delete b.dataset.arm;b.textContent='مسح';const f=F();f.L.value='';f.G.value='';f.T.forEach(t=>t.value='');save()};
+const F=()=>({L:Z.querySelector('#pL'),G:Z.querySelector('#pG'),T:[...Z.querySelectorAll('[data-p]')],C:[...Z.querySelectorAll('[data-c]')]});
+const goals=()=>{const g=LES[Z.querySelector('#pL').value]||[].concat(...Object.values(LES));Z.querySelector('#pGl').innerHTML=g.map(x=>`<option value="${x}">`).join('')};
+const load=()=>{const f=F();f.L.value=P.L||'';f.G.value=P.G||'';f.T.forEach(t=>t.value=(P.t||[])[+t.dataset.p]||'');f.C.forEach(c=>{const on=(P.c||[])[+c.dataset.c]||[];c.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',on.includes(b.textContent)))});goals()};
+const save=()=>{const f=F();P={L:f.L.value,G:f.G.value,t:f.T.map(t=>t.value),c:f.C.map(c=>[...c.querySelectorAll('button[aria-pressed="true"]')].map(b=>b.textContent))};try{localStorage.setItem(K,JSON.stringify(P))}catch(e){}};
+load();Z.querySelectorAll('#pL,#pG,[data-p]').forEach(x=>x.addEventListener('input',save));Z.querySelector('#pL').addEventListener('input',goals);
+Z.querySelectorAll('.z-chips button').forEach(b=>b.onclick=()=>{b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')!=='true');save()});
+function armed(b,txt,msg){if(b.dataset.arm){delete b.dataset.arm;b.textContent=txt;return true}b.dataset.arm=1;b.textContent=msg;setTimeout(()=>{delete b.dataset.arm;b.textContent=txt},5000);return false}
+Z.querySelector('#pEx').onclick=()=>{const b=Z.querySelector('#pEx'),f=F();if((f.T.some(t=>t.value.trim())||Z.querySelector('.z-chips [aria-pressed="true"]'))&&!armed(b,'املئي بمثال حصة أ. سارة','سيُستبدل ما كتبتِه… اضغطي مرة أخرى للتأكيد'))return;
+ f.L.value='أشباه الموصلات (حصة أ. سارة)';f.G.value='أن تفسّر الطالبة تكوّن شبه الموصل من النوع السالب n';
+ const pick=[[0,1,2],[0,1],[0,1],[0,2],[0],[0],[2],[0],[0,1,2,3],[1]];
+ f.C.forEach(c=>{const i=+c.dataset.c;c.querySelectorAll('button').forEach((x,j)=>x.setAttribute('aria-pressed',pick[i].includes(j)))});
+ f.T.forEach(t=>{const i=+t.dataset.p;t.value=i<9?plain(SARA[i][0]):'نسجّل قراءة الأميتر كما ظهرت، لا كما توقّعناها'});goals();save()};
+Z.querySelector('#pClr').onclick=()=>{const b=Z.querySelector('#pClr');if(!armed(b,'مسح','اضغطي مرة أخرى للمسح'))return;const f=F();f.L.value='';f.G.value='';f.T.forEach(t=>t.value='');Z.querySelectorAll('.z-chips button').forEach(x=>x.setAttribute('aria-pressed','false'));goals();save()};
 let pr=document.getElementById('zPrint');if(!pr){pr=document.createElement('div');pr.id='zPrint';document.body.appendChild(pr)}
 const esc=t=>String(t||'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])).replace(/\n/g,'<br>');
-Z.querySelector('#pPrint').onclick=()=>{save();pr.innerHTML=`<h1>مخطّط حصتي بالمحاور التسعة</h1><div class="m">زاد · هدية ملتقى «يوم فيزيائي استثنائي» · مدرسة الشيماء الثانوية للبنات · قسم الفيزياء</div><table><tr><th>الدرس</th><td>${esc(P.L)}</td></tr><tr><th>الهدف</th><td>${esc(P.G)}</td></tr>${AXN.map((a,i)=>`<tr><th>${i+1}. ${a}</th><td>${esc((P.t||[])[i])}</td></tr>`).join('')}<tr><th>الآية والقيمة</th><td>${esc((P.t||[])[9])}</td></tr></table>`;
+const cell=i=>{const c=(P.c||[])[i]||[],t=(P.t||[])[i]||'';return (c.length?`<ul>${c.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:'')+(t.trim()?`<div>${esc(t)}</div>`:'')};
+Z.querySelector('#pPrint').onclick=()=>{save();pr.innerHTML=`<h1>مخطّط حصتي بالمحاور التسعة</h1><div class="m">زاد · هدية ملتقى «يوم فيزيائي استثنائي» · مدرسة الشيماء الثانوية للبنات · قسم الفيزياء</div><table><tr><th>الدرس</th><td>${esc(P.L)}</td></tr><tr><th>الهدف</th><td>${esc(P.G)}</td></tr>${ROWN.map((a,i)=>`<tr><th>${i<9?(i+1)+'. ':''}${a}</th><td>${cell(i)}</td></tr>`).join('')}</table>`;
  document.body.classList.add('zprint');setTimeout(()=>{window.print();setTimeout(()=>document.body.classList.remove('zprint'),500)},50)};
 /* presentation: drop live/event-only slides (original indexes) */
 try{[46,43,42,41,34,33,27,26,25,24,23,22,21,20,19,18,16,15,14,13,12,10,5,3].forEach(i=>SLIDES.splice(i,1))}catch(e){}
