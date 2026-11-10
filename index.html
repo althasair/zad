@@ -1418,8 +1418,8 @@ const LABS=[
      $('#m1').textContent=fx(m.v1);$('#m2').textContent=fx(m.v2);$('#ms').textContent=fx(m.v1+m.v2);
      setLamp('lb',m.v2>4.2?0:m.v2/3);$('#burn').textContent=m.v2>4.2?'احترق المصباح! الجهد أعلى من 3V':'';on&&on({v0,r1,r2,...m})};
     ['v0','r1','r2'].forEach(id=>$('#'+id).oninput=upd);upd()}},
- chal:{t:"شغّلي المصباح 3V من مصدر 12V دون أن يحترق: اضبطي المقاومتين حتى يقترب V2 من 3.0 V.",
-  check:s=>s.v0===12&&Math.abs(s.v2-3)<0.08,ev:s=>`V2 = ${fx(s.v2)} V، والنسبة R2 إلى (R1+R2) قريبة من 1:4`,nx:"لاحظي أن V1 + V2 أقل قليلاً من 12V، وفكّري في السبب"},
+ chal:{t:"شغّلي المصباح 3V من مصدر 12V دون أن يحترق: اضبطي المقاومتين حتى يقترب V2 من 3.0 V. (تلميح: اجعلي R1 ثلاثة أضعاف R2 تقريباً)",
+  check:s=>s.v0===12&&Math.abs(s.v2-3)<=0.25,ev:s=>`V2 = ${fx(s.v2)} V، والنسبة R2 إلى (R1+R2) قريبة من 1:4`,nx:"لاحظي أن V1 + V2 أقل قليلاً من 12V، وفكّري في السبب"},
  BENCH:[[9,60,120],[12,80,40],[6,50,150],[9,120,60],[12,40,110]],
  reading:{mode:'num',prompt:b=>`اضبطي دائرتكِ على <b dir="ltr">V0 = ${b[0]} V</b>، <b dir="ltr">R1 = ${b[1]} Ω</b>، <b dir="ltr">R2 = ${b[2]} Ω</b>، ثم اكتبي قراءة <b>V2</b> كما يعرضها جهازكِ.`,
   meas:b=>{const i=b[0]/(b[1]+b[2]+2);return i*b[2]},ideal:b=>b[2]*b[0]/(b[1]+b[2]),unit:'V',tol:0.05,why:"الفرق سببه المقاومة الداخلية للمصدر"},
@@ -1577,6 +1577,7 @@ function runStation(k){
     }else{
       // mystery gate: override sim gate selector
       $('#gsel').hidden=true;const real=Bv;$('#gN').textContent='؟';
+      {const st=L.sim.st;st.g=real;st.seen={};const sw=$('#swA');if(sw&&sw.onclick){sw.onclick();sw.onclick()}const q0=st.seen[real+'00'];st.seen={};st.seen[real+'00']=q0;document.querySelectorAll('#tt tr[data-r]').forEach(tr=>{tr.lastElementChild.textContent=tr.dataset.r==='00'?q0:'؟'});$('#gN').textContent='؟'}
       $('#ans').innerHTML=`<div class="opts" id="mo">${['AND','OR','NAND','NOR','XOR'].map(x=>`<button type="button" data-g="${x}">${x}</button>`).join('')}</div>`;
       const ev=`البوابة الغامضة هي ${real}، وجدولها: ${['00','01','10','11'].map(r=>r+'→'+origOut(real,+r[0],+r[1])).join('  ')}`;
       const restore=()=>{L.sim.out=origOut};
