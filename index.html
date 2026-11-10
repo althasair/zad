@@ -1553,14 +1553,14 @@ function runStation(k){
   }
   if(step===1){
     el.innerHTML=head+`<div class="lab two"><div style="display:grid;gap:14px;align-content:start">${ann(0,'المفهوم نفسه بالصورة وباليد وبالأرقام؛ كل متعلمة تدخل من الباب الذي يناسبها',bench(L.sim.svg()))}${ann(0,'أنماط التعلم: المفهوم الواحد بأكثر من تمثيل للجميع',`<div class="lsrow"><span>👁️ <b>بصري</b> الدائرة والمصباح</span><span>✋ <b>حسي حركي</b> تحريك المؤشر بيدكِ</span><span>🔢 <b>رقمي</b> القراءات</span><span>🗣️ <b>سمعي</b> نقاش المجموعة</span></div>`)}${ann(5,'التجربة مبنية على جهاز من حياتنا',`<div class="realtag">في الحياة: <b>${REAL[k]}</b></div>`)}${ann(0,'كل عضوة تجرّب وتسجّل بنفسها، والقائدة تنقل الكلمة لمن تحتاج',`<div class="realtag">العمل الجماعي: <b>👑 قائدة تدير الحوار · والجميع يقرأ ويسجّل ويناقش ويتحدث</b></div>`)}</div><div class="ctl">${L.sim.ctl()}
-      ${ann(3,'تقويم أدائي: تُثبت فهمها بإنجاز مهمة عملية',`<div class="box" style="padding:12px"><b>التحدي · نقطتان:</b> ${L.chal.t}<div id="chal" style="margin-top:6px;font-size:14px;color:var(--muted)">جرّبي حتى تتحقق الشروط.</div></div>`)}${next('إلى تحدّي القراءة')}</div></div>`;
+      ${ann(3,'تقويم أدائي: تُثبت فهمها بإنجاز مهمة عملية',`<div class="box" style="padding:12px"><b>التحدي:</b> ${L.chal.t}<div id="chal" style="margin-top:6px;font-size:14px;color:var(--muted)">جرّبي حتى تتحقق الشروط.</div></div>`)}${next('إلى تحدّي القراءة')}</div></div>`;
     let won=false;L.sim.wire(s=>{if(!won&&L.chal.check(s)){won=true;const g2=award(2,true);$('#chal').innerHTML=fb(true,`نجحتِ في التحدي (+${g2})`,L.chal.ev(s),L.chal.nx)}});bindNext(2);
   }
   if(step===2){
     const R=L.reading;
     el.innerHTML=head+`<div class="lab two">${bench(L.sim.svg())}<div class="ctl">
-      ${ann(3,'قراءة من الجهاز بوقت محدد، وقيم مختلفة لكل مجموعة',`<div class="box" style="padding:12px;display:grid;gap:6px"><div class="row" style="justify-content:space-between"><b>تحدّي القراءة · 3 نقاط</b><span class="timer"></span></div>
-        <span>${R.prompt(Bv)}</span><span style="font-size:13px;color:var(--muted)">القيم مختلفة لكل مجموعة، والإجابة من قراءة الجهاز.</span></div>`)}
+      ${ann(3,'قراءة من الجهاز بوقت محدد، وقيم مختلفة لكل مجموعة',`<div class="box" style="padding:12px;display:grid;gap:6px"><div class="row" style="justify-content:space-between"><b>تحدّي القراءة</b><span class="timer"></span></div>
+        <span>${R.prompt(Bv)}</span><span style="font-size:13px;color:var(--muted)">اقرئي القيمة من الجهاز، لا من القانون.</span></div>`)}
       ${L.sim.ctl()}<div id="ans"></div><div id="qf"></div></div></div>`;
     const origOut=L.sim.out;if(R.mode==='mystery')L.sim.out=(gg,a,b)=>origOut(Bv,a,b);
     L.sim.wire(()=>{if(R.mode==='mystery'){$('#gN').textContent='؟'}});
@@ -1586,9 +1586,9 @@ function runStation(k){
     }
   }
   if(step===3){
-    const LN=['الدعم','الأساسي','التمكّن'],PT=['نقطة','نقطتان','3 نقاط'];
+    const LN=(window.LVN3||['الدعم','الأساسي','التمكّن']),PT=['المستوى الأول','المستوى الثاني','المستوى الثالث'];
     window._lvDone=window._lvDone&&window._lvDone.k===`${k}:${g}`?window._lvDone:{k:`${k}:${g}`,r:{}};const D=window._lvDone.r;
-    el.innerHTML=head+`<p class="lede">ابدئي بالمستوى الذي يناسبكِ، ثم ارتقي إلى المستوى الأعلى متى سمح الوقت؛ فلكل مستوى نقاطه، وتُجمع النقاط كلها للمجموعة. لكل سؤال 60 ثانية.</p>
+    el.innerHTML=head+`<p class="lede">ابدئي بالمستوى الذي يناسبكِ، ثم ارتقي إلى المستوى الأعلى؛ هدفٌ واحد بثلاثة مستويات، والارتقاء مفتوح.</p>
       ${ann(1,'هدف واحد بثلاثة مستويات، والارتقاء من مستوى إلى أعلى منه مفتوح للجميع',`<div class="levels" id="lv">${LN.map((n,i)=>`<button type="button" data-l="${i}" aria-pressed="false"><b>${n}</b><small>${PT[i]}</small><em class="lvst"></em></button>`).join('')}</div>`)}<div id="lq" style="margin-top:14px"></div>
       <div class="row" style="margin-top:12px">${next('إلى «تحقّقي من Copilot»')}</div>`;
     bindNext(4);
@@ -1619,7 +1619,7 @@ function runStation(k){
         <code id="prompt">${L.prompt}</code><div class="aichat"><div class="aic-h">🤖 ردّ جاهز بأسلوب Copilot <small>(أُعدّ مسبقاً للورشة، فلا حاجة إلى تسجيل الدخول)</small></div><p>${AIR[k].a}</p></div><div class="row"><button class="btn gold" id="tryIt" type="button">اختبري الرد على المعمل</button><button class="btn ghost" id="aiErr" type="button">اكشفي موضع الخطأ</button></div><div id="sandbox" hidden></div><div id="aiErrBox" class="src-ans" hidden style="border-color:#C0392B;background:#FDECEA"><b>موضع الخطأ:</b> ${AIR[k].e}</div><details class="aic-own"><summary>لديكِ حساب Copilot؟ جرّبي بنفسكِ</summary><div class="row"><button class="btn ghost" id="cp" type="button">نسخ السؤال</button><a class="btn ghost" href="https://copilot.microsoft.com/" target="_blank" rel="noopener" style="text-decoration:none">افتحي Copilot</a><span id="cpm" style="font-size:13px;color:var(--muted)"></span></div></details></div>
       ${ann(7,'المفهوم نفسه حاضر في منشآت قطر',`<div class="qatar"><div class="flag" aria-hidden="true"></div><div><b>من قطر</b><p style="margin:4px 0 0">${L.qatar}</p></div></div>`)}
       ${ann(6,'كيف يوفّر هذا التطبيق الطاقة',`<div class="qatar sust"><div class="leaf" aria-hidden="true">🌿</div><div><b>الاستدامة</b><p style="margin:4px 0 0">${SUST[k]}</p></div></div>`)}
-      <div class="box" style="text-align:center"><b>نهاية المحطة</b><p style="margin:4px 0 10px">نقاط مجموعتكِ الآن: <b id="fin">${dispPts()}</b>. بعد الإجابة عن ادّعاء Copilot تُسلَّم المحطة، ويُغلق معملها.</p><button class="btn gold" id="again" type="button">تسليم المحطة</button></div></div>`;
+      <div class="box" style="text-align:center"><b>نهاية المحطة</b><p style="margin:4px 0 10px">بعد الحكم على ادّعاء Copilot تكتمل المحطة، وتستطيعين إعادتها متى شئتِ.</p><button class="btn gold" id="again" type="button">إنهاء المحطة</button></div></div>`;
     el.querySelectorAll('#co button').forEach(b=>b.onclick=()=>{const o=$('#co');if(o.dataset.d)return;o.dataset.d=1;const ok=b.dataset.a==='1';b.classList.add(ok?'right':'wrong');const g2=award(2,ok);$('#fin').textContent=dispPts();
       $('#cf').innerHTML=fb(ok,ok?`اكتشفتِ خطأ Copilot (+${g2})`:'وافقتِ على إجابة خاطئة',C.ev,'لا تُعتمد إجابة الذكاء الاصطناعي قبل اختبارها بالتجربة')});
     $('#cp').onclick=()=>{const t=$('#prompt').textContent;(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>$('#cpm').textContent='تم النسخ').catch(()=>{const r=document.createRange();r.selectNodeContents($('#prompt'));const s=getSelection();s.removeAllRanges();s.addRange(r);$('#cpm').textContent='النص محدّد، انسخيه يدوياً'})};
@@ -2641,12 +2641,12 @@ function orgOpen(){if(document.querySelector('.evov'))return;const A=EVQO.map(()
 .z-eqk{display:grid;gap:8px}.z-eqk div{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;line-height:1.7}.z-eqk b{flex:none;direction:ltr;min-width:34px;text-align:center;background:#FBF1E8;color:var(--m);border-radius:8px;padding:1px 6px;font-size:16px}
 .z-sl{display:grid;gap:10px}.z-sl label{display:grid;gap:3px;font-size:13.5px;font-weight:700;color:var(--tx)}.z-sl input{width:100%;accent-color:var(--m)}
 .z-track{position:relative;height:46px;border-radius:999px;background:linear-gradient(90deg,#F7EBE1,#F3DCC9);border:1px solid #EBDCCF;overflow:hidden}
-.z-track .run{position:absolute;inset:0 0 0 auto;width:0;background:linear-gradient(90deg,rgba(201,160,106,.25),rgba(122,31,53,.35));transition:width .5s}
+.z-track .run{position:absolute;inset:0 auto 0 0;width:0;background:linear-gradient(90deg,rgba(201,160,106,.25),rgba(122,31,53,.35));transition:width .5s}
 .z-track .ball{position:absolute;top:7px;right:6px;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-size:18px;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.2);transition:right .6s cubic-bezier(.2,.8,.2,1)}
 .z-read{font-size:14px;color:var(--mu);text-align:center}.z-read b{color:var(--m)}
 /* flip axes */
-.z-ax{perspective:900px;cursor:pointer;min-height:236px}
-.z-ax .in{position:relative;width:100%;height:100%;min-height:236px;transition:transform .6s;transform-style:preserve-3d}
+.z-ax{perspective:900px;cursor:pointer;min-height:262px}
+.z-ax .in{position:relative;width:100%;height:100%;min-height:262px;transition:transform .6s;transform-style:preserve-3d}
 .z-ax.on .in{transform:rotateY(180deg)}
 .z-ax .fa,.z-ax .ba{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:12px;padding:14px;border:1px solid #EBDCCF;overflow:auto}
 .z-ax .fa{background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:8px}
@@ -2706,95 +2706,179 @@ function orgOpen(){if(document.querySelector('.evov'))return;const A=EVQO.map(()
 .z-end .t{font-family:var(--f-ruqaa);font-size:clamp(24px,4.6vw,34px);color:#F1D9A0}
 .z-end p{max-width:620px;margin:8px auto 0;line-height:1.9;font-size:15px}
 .z-end .s{margin-top:12px;font-size:13px;color:#F1D9A0;font-weight:700}
-.z-top{position:fixed;bottom:16px;right:16px;z-index:40;border:0;width:44px;height:44px;border-radius:50%;background:var(--m,#7A1F35);color:#fff;font-size:20px;box-shadow:0 6px 16px rgba(86,19,38,.4);cursor:pointer}
+.z-top{position:fixed;bottom:16px;left:16px;z-index:40;border:0;width:44px;height:44px;border-radius:50%;background:var(--m,#7A1F35);color:#fff;font-size:20px;box-shadow:0 6px 16px rgba(86,19,38,.4);cursor:pointer}
 body.gift .scorebar{display:none!important}
-body.gift [data-dock]{display:none!important}
+
+.z-idea{display:grid;gap:12px;grid-template-columns:1fr}@media(min-width:760px){.z-idea{grid-template-columns:repeat(3,1fr)}}
+.z-idea .z-card{text-align:center}.z-idea .sym{font-size:34px;font-weight:800;color:var(--m);direction:ltr}.z-idea b{display:block;font-size:17px;color:var(--m);margin:2px 0 4px}.z-idea p{margin:0;font-size:14px;line-height:1.8}
+.z-model{background:#fff;border:1px solid #EBDCCF;border-radius:14px;overflow:hidden}
+.z-model .gl{background:linear-gradient(90deg,#7A1F35,#561326);color:#fff;padding:12px 16px;display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center}
+.z-model .gl b{background:#F1D9A0;color:#561326;border-radius:999px;padding:3px 12px;font-size:13px}.z-model .gl p{margin:0;font-size:17px;font-weight:800}
+.z-model .gl em{font-style:normal;font-size:12.5px;color:#F6E2B8;font-weight:700;margin-inline-start:auto}
+.z-mg{display:grid;gap:10px;padding:12px;grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
+.z-mc{border:1px solid #EBDCCF;border-top:4px solid var(--k);border-radius:10px;padding:10px 12px;background:#FFFCF8}
+.z-mc h4{margin:0 0 4px;display:flex;align-items:center;gap:8px;font-size:15px;color:var(--m)}.z-mc h4 i{font-style:normal;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:var(--k);color:#fff;font-size:12px;flex:none}
+.z-mc p{margin:0;font-size:13.5px;line-height:1.75}.z-mc u{text-decoration:none;font-weight:800;color:#561326}
+.z-mc small{display:inline-block;margin-top:5px;font-size:11px;font-weight:800;color:var(--g2);background:#FBF1E8;border-radius:999px;padding:1px 9px}
+.z-model .ft{padding:10px 14px;border-top:1px dashed #E7D3BF;text-align:center;font-size:14px}.z-model .ft span{font-family:var(--f-ruqaa);font-size:19px;color:var(--m)}
+.z-pl{background:#fff;border:1px solid #EBDCCF;border-radius:14px;padding:14px}
+.z-pl .top{display:grid;gap:10px;grid-template-columns:1fr}@media(min-width:760px){.z-pl .top{grid-template-columns:1fr 2fr}}
+.z-pl label{display:grid;gap:4px;font-size:13.5px;font-weight:800;color:var(--m)}
+.z-pl input,.z-pl textarea{width:100%;border:1px solid #E7D3BF;border-radius:10px;padding:8px 10px;font:inherit;font-size:14.5px;background:#FFFCF8;font-weight:500;color:var(--tx)}
+.z-pl textarea{min-height:64px;resize:vertical}
+.z-rows{display:grid;gap:10px;margin-top:12px;grid-template-columns:1fr}@media(min-width:900px){.z-rows{grid-template-columns:1fr 1fr}}
+.z-rows label span{font-weight:600;color:var(--mu);font-size:12.5px}
+.z-act{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.z-act button{border:0;border-radius:999px;padding:9px 16px;font-weight:800;cursor:pointer;font-size:14px}
+.z-act .p{background:var(--m);color:#fff}.z-act .g{background:#FBF1E8;color:var(--m);border:1px solid #E7D3BF}
+
+.z-sbar{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;justify-content:space-between;background:#fff;border:1px solid #EBDCCF;border-radius:12px;padding:10px 12px;margin-bottom:12px}
+.z-seg{display:inline-flex;background:#FBF1E8;border-radius:999px;padding:3px}.z-seg button{border:0;background:transparent;border-radius:999px;padding:7px 14px;font-weight:800;cursor:pointer;color:#7A1F35;font-size:14px}
+.z-seg button[aria-pressed="true"]{background:#7A1F35;color:#fff}
+.z-who{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:14px;font-weight:700;color:#7A1F35}.z-who select{width:auto;min-width:9em;padding:6px 8px;border-radius:999px;border:1px solid #E7D3BF;background:#FFFCF8}
+.z-who button{border:1px solid #E7D3BF;background:#FFFCF8;color:#7A1F35;border-radius:999px;padding:6px 12px;font-weight:800;cursor:pointer;font-size:13px}
+.z-nb{background:#FFF9F3;border:1px dashed #C9A06A;border-radius:12px;padding:12px;margin-bottom:12px;display:grid;gap:8px}.z-nb textarea{width:100%;min-height:120px;border:1px solid #E7D3BF;border-radius:10px;padding:8px;font:inherit}
+.z-nb small{color:#7A5A55}.z-nb .r{display:flex;gap:8px}.z-nb .r button{border:0;border-radius:999px;padding:7px 16px;font-weight:800;cursor:pointer;background:#7A1F35;color:#fff}
+body.smode .reflect,body.smode .labkaf,body.smode #annT{display:none!important}
+.z-praise{position:fixed;left:50%;top:38%;transform:translate(-50%,-50%) scale(.6);opacity:0;z-index:95;pointer-events:none;text-align:center;background:linear-gradient(160deg,#7A1F35,#561326);color:#fff;border:2px solid #F1D9A0;border-radius:22px;padding:18px 26px;box-shadow:0 20px 50px rgba(86,19,38,.45);transition:.35s cubic-bezier(.2,.9,.3,1.3);max-width:90vw}
+.z-praise.on{opacity:1;transform:translate(-50%,-50%) scale(1)}.z-praise b{display:block;font-family:var(--f-ruqaa);font-size:clamp(30px,6vw,46px);color:#F1D9A0;line-height:1.2}.z-praise span{font-size:clamp(16px,3vw,20px);font-weight:700}
+#zPrint{display:none}
+@media print{body.zprint>*:not(#zPrint){display:none!important}body.zprint #zPrint{display:block}body.zprint{background:#fff}
+ #zPrint{font-family:var(--f-ui);color:#222;direction:rtl}#zPrint h1{font-family:var(--f-ruqaa);color:#7A1F35;margin:0 0 4px;font-size:26px}#zPrint .m{color:#666;font-size:12px;margin-bottom:10px}
+ #zPrint table{width:100%;border-collapse:collapse;font-size:12.5px}#zPrint td,#zPrint th{border:1px solid #ccc;padding:6px 8px;vertical-align:top;text-align:right}#zPrint th{background:#F6EDE6;color:#7A1F35;width:28%}}
 </style>
 <script>
 (function(){
 const Z=document.getElementById('zadBody');if(!Z)return;
 const ic=i=>(typeof AXI!=='undefined'&&AXI[i])||'<b style="font-size:22px">✦</b>';
+const AXN=["مراعاة الفروق الفردية","التمايز","التغذية الراجعة البنّاءة","أساليب التقويم","تفعيل الذكاء الاصطناعي","ربط المحتوى بالواقع","تعزيز التنمية المستدامة","إبراز الهوية القطرية","تعزيز الكفايات الأساسية"];
+const AXK=['#7A1F35','#9A6A26','#2C6A4B','#B3263E','#5A3E8C','#1E6C8A','#3F7F3A','#8A1538','#C9A06A'];
 const LENSQ=[["هل وجدت كل طالبة مدخلاً يناسبها: الصورة أو اليد أو الرقم؟","هل كانت المهمة واحدة بمستويات، أم أوراقاً منفصلة؟","من ارتقت من مستوى إلى أعلى منه؟ وما الذي ساعدها؟"],
  ["متى قوّمنا قبل التعلم، وأثناءه، وبعده؟","هل حملت التغذية الراجعة: ما تحقق + الدليل + الخطوة التالية؟","هل عدّلت الطالبة إجابتها بعد التغذية الراجعة؟"],
  ["هل بدأ المفهوم من جهاز أو موقف من الحياة؟","هل حسبنا التوفير بالعلم بدل النصيحة العامة؟","ما الحل الذي يمكن أن تصمّمه الطالبة لمدرستها أو بيتها؟"],
  ["أين ظهرت قطر سياقاً حيّاً للمفهوم، لا صورةً فقط؟","هل حاكمت الطالبة إجابة الذكاء الاصطناعي بالتجربة والدليل؟","كيف نجعل الذكاء الاصطناعي أداةً نحاورها لا مصدراً ننسخه؟"]];
 const STEPD=[["التوقّع","قبل أن تلمس الطالبة الدائرة: سؤال توقّع يكشف ما في ذهنها، فنبني عليه.","تقويم قبلي"],
  ["التجربة","تتحكّم بيدها في الدائرة، وترى القراءات والرسم معاً؛ المفهوم يُرى ويُلمس ويُقاس.","الفروق الفردية · الواقع"],
- ["تحدّي القراءة","قراءة دقيقة من الجهاز في وقت محدد؛ دليلٌ على الفهم لا على الحفظ.","تقويم أدائي"],
+ ["تحدّي القراءة","قراءة دقيقة من الجهاز؛ دليلٌ على الفهم لا على الحفظ.","تقويم أدائي"],
  ["المهمة المتمايزة","هدف واحد بثلاثة مستويات، تبدأ كل طالبة من مستواها ثم ترتقي.","التمايز"],
  ["تحقّقي من Copilot","إجابة من الذكاء الاصطناعي فيها خطأ مقصود، تكشفه الطالبة بالقياس والدليل.","الذكاء الاصطناعي بعين ناقدة"]];
 const FB=[{t:"«خطأ… راجعي القانون»",ok:0,why:"تُغلق باب التفكير: لم تبيّن ما الذي أصابت فيه الطالبة، ولا أين الخطأ، ولا ماذا تفعل الآن."},
  {t:"«ممتاز، 8 من 10 👏»",ok:0,why:"تشجيع جميل، لكنه حكمٌ ودرجة؛ لا يخبرها لماذا ضاعت الدرجتان، ولا كيف تتقدّم."},
  {t:'«حسبتِ التيار الكلي صحيحاً <b>(ما تحقق)</b>. لكن الجهد على R2 يُحسب بـ <span dir="ltr">I × R2</span> لا بـ <span dir="ltr">I × R1</span>؛ عوّضي بالقيمة <span dir="ltr">70 Ω</span> <b>(الدليل)</b>. أعيدي الحساب، ثم تحقّقي: هل مجموع الجهدين <span dir="ltr">12 V</span>؟ <b>(الخطوة التالية)</b>»',ok:1,why:"هذه التغذية الراجعة البنّاءة: ما تحقق + الدليل + الخطوة التالية. تبني على ما أصابت فيه، وتسمّي الخطأ بدقة، وتعطيها خطوة تنفّذها الآن، في عشرين ثانية."}];
+const SARA=[["المفهوم نفسه من ثلاثة مداخل: <u>نمذجة بالجسد</u> (طالبات «سيليكون» حول «فوسفور»)، و<u>مختبر افتراضي</u> باليد، و<u>الشكل <span dir=\"ltr\">2-22</span></u> من الكتاب.","الشرح · التجربة"],
+ ["<u>سلّم المستويات</u>: مستكشفة ← محلّلة ← مبتكرة؛ هدفٌ واحد بثلاثة أسئلة متدرّجة، تبدأ المجموعة من مستواها ثم ترتقي.","المستويات"],
+ ["بعد كل إجابة في المختبر <u>تفسيرٌ فوري للسبب</u>: الإلكترون الخامس بلا رابطة فصار حراً؛ وأسئلة «إظهار» تبني على إجابة الطالبة.","التجربة · الشرح"],
+ ["<u>قبلي</u>: «توقّعي قبل التجربة»؛ <u>أثناء</u>: أسئلة المختبر ودليل الطالبة؛ <u>ختامي</u>: غلق الهدف ببطاقات الطيف ومسحها بالكاميرا.","التهيئة · الغلق"],
+ ["<u>مسح بطاقات الطيف</u> يقرأ إجابات الصف كله في ثوانٍ ويعرض النتيجة فوراً، ويمهّد لنشاط <u>«نحكم على ادّعاء Copilot»</u> في الهدف التالي.","الغلق"],
+ ["السيليكون المطعّم بالفوسفور هو قلب <u>الخلايا الشمسية</u> و<u>رقائق الأجهزة</u> التي في أيدي الطالبات.","التهيئة · الشرح"],
+ ["التطعيم يصنع الخلية الشمسية؛ و<u>محطة الخرسعة</u> بأكثر من 1.8 مليون لوح تحوّل الشمس إلى كهرباء نظيفة.","الشعور بالمشكلة"],
+ ["<u>الخرسعة للطاقة الشمسية</u> بقدرة 800 ميغاواط، افتتحها سمو الأمير عام 2022؛ منجزٌ قطري يبدأ من ذرة فوسفور.","التهيئة"],
+ ["<u>التعاون</u> في النمذجة، و<u>التفكير الناقد</u> في التوقّع والحكم للتجربة، و<u>البحث</u> في المختبر، و<u>اللغوية</u> في صياغة التعريف بلغتها.","كل المراحل"]];
+const PQ=["بأي مداخل سيصل المفهوم؟ (صورة، يد، رقم، نقاش)","ما سؤال الدعم، والسؤال الأساسي، وسؤال التمكّن؟","كيف ستردّين: ما تحقق + الدليل + الخطوة التالية؟","ماذا ستقيسين قبل التعلم، وأثناءه، وبعده؟","أي ادّعاء من الذكاء الاصطناعي ستحاكمه الطالبات بالدليل؟","بأي جهاز أو موقف من الحياة ستبدئين؟","ماذا ستحسب الطالبة أو تصمّم لتوفير الطاقة أو الموارد؟","أي منجز أو مشروع قطري سيكون سياقاً حيّاً للمفهوم؟","أي كفاية ستبنيها كل مرحلة من الحصة؟"];
+const plain=h=>h.replace(/<[^>]+>/g,'');
 const ST2=(typeof ST!=='undefined'?ST:[]),EN=(typeof ENV!=='undefined'?ENV:[]);
 const ax9=AXD.slice(0,9).map((a,i)=>i<8?{n:a[0],d:a[1],seen:a[2],was:(FIXC[i]||[])[0],now:(FIXC[i]||[])[1],ex:AXC[i]||''}:{n:a[0],d:"كل نشاط يبني كفايات الطالبة الست، لا المعرفة وحدها.",seen:a[2]||'',kaf:1});
 if(ax9.length<9)ax9.push({n:"تعزيز الكفايات الأساسية",d:"كل نشاط يبني كفايات الطالبة الست، لا المعرفة وحدها.",seen:'',kaf:1});
+let n=0;const H=(t,sub,id)=>`<section class="z-sec" id="${id}"><div class="z-h"><i>${++n}</i><h3>${t}</h3></div><p class="z-sub">${sub}</p>`;
 let h=`<div class="z-hero"><span class="gift">🎁 هديةٌ من مدرسة الشيماء الثانوية للبنات · قسم الفيزياء</span>
  <h2>زاد</h2><div class="vs">﴿وَتَزَوَّدُوا فَإِنَّ خَيْرَ الزَّادِ التَّقْوَىٰ﴾<small>(البقرة: 197)</small></div>
- <p>زميلتنا الغالية… هذا زادكِ من «يوم فيزيائي استثنائي»: خلاصة ما عشناه معاً في ورشة آفاق، مرتّبةً لتعودي إليها متى شئتِ، والمعامل الافتراضية الخمسة كاملةً بأنشطتها، لتأخذيها إلى صفّكِ وطالباتكِ.</p></div>
-<nav class="z-map" aria-label="محتوى الزاد">
- <a href="#z1">⚡ معادلة الورشة</a><a href="#z2">✦ المحاور التسعة</a><a href="#z3">🔍 العدسات الأربع</a><a href="#z4">🧭 رحلة المحطة</a><a href="#z5">📶 التمايز</a><a href="#z6">💬 التغذية الراجعة</a><a href="#z7">🟥 اعتراضات وحلول</a><a href="#z8">🔬 المعامل الخمسة</a><a href="#z9">✍️ التزامي</a></nav>`;
-h+=`<section class="z-sec" id="z1"><div class="z-h"><i>1</i><h3>معادلة الورشة</h3></div><p class="z-sub">«الاستراتيجية قوة، والتغذية الراجعة تسارع»؛ شعارٌ مأخوذ من قانون نيوتن الثاني. حرّكي المؤشرين وشاهدي أثرهما في تعلّم طالبتكِ.</p>
- <div class="z-eq"><div><div class="z-f">F = m · <span>a</span></div>
- <div class="z-eqk"><div><b>F</b><span><strong>القوة = الاستراتيجية:</strong> هي ما يحرّك التعلّم؛ بلا استراتيجية تبقى الطالبة ساكنة مهما طال الشرح.</span></div>
- <div><b>m</b><span><strong>الكتلة = الطالبة بما تحمله:</strong> خبراتها وفروقها ومستواها؛ لكل طالبة كتلتها، فلا تصلح قوة واحدة للجميع.</span></div>
- <div><b>a</b><span><strong>التسارع = التغذية الراجعة:</strong> تغيّرٌ في الفهم في كل لحظة؛ كلما كانت فورية ومحددة، تسارع التعلّم.</span></div></div></div>
- <div class="z-sl"><label>قوة الاستراتيجية <input type="range" id="zF" min="1" max="10" value="4"></label>
- <label>التغذية الراجعة (من «صح/خطأ» إلى «ما تحقق + الدليل + الخطوة التالية») <input type="range" id="zA" min="1" max="10" value="3"></label>
- <label>كتلة التحدي عند الطالبة <input type="range" id="zM" min="1" max="10" value="5"></label>
- <div class="z-track"><div class="run" id="zRun"></div><div class="ball" id="zBall">🎓</div></div><div class="z-read" id="zRead"></div></div></div></section>`;
-h+=`<section class="z-sec" id="z2"><div class="z-h"><i>2</i><h3>المحاور التسعة</h3></div><p class="z-sub">المحاور لا تُضاف إلى الحصة… المحاور هي الحصة. المسي أي بطاقة لتقلبيها: كيف كان المحور، وكيف صار، ومثاله في الفيزياء، وأين عشتِه في الورشة.</p><div class="z-grid">`+
+ <p>زميلتنا الغالية… هذا زادكِ من «يوم فيزيائي استثنائي»: خلاصة ما عشناه في ورشة آفاق، ونموذج حيّ من حصة أ. سارة، ومخطّط تصمّمين به حصتكِ القادمة بالمحاور التسعة، والمعامل الافتراضية الخمسة كاملةً لتأخذيها إلى صفّكِ.</p></div>
+<nav class="z-map" aria-label="محتوى الزاد"><a href="#z1">⚡ فكرة الورشة</a><a href="#z2">✦ المحاور التسعة</a><a href="#z3">🎓 حصة أ. سارة نموذجاً</a><a href="#z4">🧭 رحلة المحطة</a><a href="#z5">📶 التمايز</a><a href="#z6">💬 التغذية الراجعة</a><a href="#z7">🔍 العدسات الأربع</a><a href="#z8">🟥 اعتراضات وحلول</a><a href="#z9">🔬 المعامل الخمسة</a><a href="#z10">✍️ خطّطي حصتكِ</a></nav>`;
+h+=H('فكرة الورشة','«الاستراتيجية قوة، والتغذية الراجعة تسارع»؛ قانون نيوتن الثاني بلغة الصف: القوة وحدها لا تكفي، والتسارع هو ما نراه في تعلّم الطالبة.','z1')+`<div class="z-idea">
+ <div class="z-card"><div class="sym">F</div><b>القوة = الاستراتيجية</b><p>ما يحرّك التعلّم؛ نشاطٌ واحد مصمَّم بإتقان تسكن فيه المحاور كلها.</p></div>
+ <div class="z-card"><div class="sym">m</div><b>الكتلة = الطالبة بما تحمله</b><p>خبراتها وفروقها ومستواها؛ لكل طالبة كتلتها، فلا تصلح قوة واحدة للجميع.</p></div>
+ <div class="z-card"><div class="sym">a</div><b>التسارع = التغذية الراجعة</b><p>تغيّرٌ في الفهم في كل لحظة؛ كلما كانت فورية ومحددة، تسارع التعلّم.</p></div></div></section>`;
+h+=H('المحاور التسعة','المحاور لا تُضاف إلى الحصة… المحاور هي الحصة. المسي أي بطاقة لتقلبيها: كيف كان المحور، وكيف صار، ومثاله في الفيزياء، وأين عشتِه في الورشة.','z2')+`<div class="z-grid">`+
  ax9.map((a,i)=>`<div class="z-ax" tabindex="0" role="button" aria-label="${a.n}"><div class="in"><div class="fa"><span class="nb">المحور ${i+1}</span><span class="ic">${ic(i)}</span><b>${a.n}</b><p>${a.d}</p>${a.kaf?`<div class="z-kaf">${KAF.map(k=>`<span>${k}</span>`).join('')}</div>`:''}<span class="tap">↻ اقلبي البطاقة</span></div>
- <div class="ba">${a.kaf?`<p class="now">كل خطوة في المحطة تبني كفاية: البحث حين تتوقّع وتقيس، والتفكير الناقد حين تحاكم إجابة Copilot، واللغوية والعددية حين تقرأ وتحسب، والتعاون حين تتبادل المجموعة الأدوار، وحل المشكلات في مهمة التمكّن، والتواصل حين تعرض المتحدثة.</p><p class="seen"><i>عشتِه في الورشة:</i> ${a.seen||'شريط «الكفايات المعزَّزة» تحت كل محطة في العرض.'}</p>`:
+ <div class="ba">${a.kaf?`<p class="now">كل خطوة في المحطة تبني كفاية: البحث حين تتوقّع وتقيس، والتفكير الناقد حين تحاكم إجابة Copilot، واللغوية والعددية حين تقرأ وتحسب، والتعاون حين تتبادل المجموعة الأدوار، وحل المشكلات في مهمة التمكّن، والتواصل حين تعرض المتحدثة.</p><p class="seen"><i>عشتِه في الورشة:</i> ${a.seen||'شريط «الكفايات المعزَّزة» تحت كل محطة.'}</p>`:
  `<p class="was">✗ كان: ${a.was}</p><p class="now">✓ صار: ${a.now}</p><p class="ex"><i>${a.ex.split(':')[0]}:</i>${a.ex.split(':').slice(1).join(':')}</p><p class="seen"><i>عشتِه في الورشة:</i> ${a.seen}</p>`}</div></div></div>`).join('')+`</div></section>`;
-h+=`<section class="z-sec" id="z3"><div class="z-h"><i>3</i><h3>العدسات الأربع</h3></div><p class="z-sub">في كل جولة حملت كل معلمة عدسةً ترصد بها محورين، ثم تبدّلت العدسة. خذي الأسئلة معكِ، وانظري بها إلى حصتكِ أو حصة زميلتكِ.</p><div class="z-grid">`+
- LENS.map((l,k)=>`<div class="z-card z-lens"><b>${l[0]}</b><small>${l[1]}</small><ul>${LENSQ[k].map(q=>`<li>${q}</li>`).join('')}</ul></div>`).join('')+
- `</div><div class="z-lead">👑 <b>القائدة تتبدّل في كل محطة:</b> تدير الحوار، وتنقل الكلمة، وتمنع الصدام، وتتابع من أنهت ومن لم تنهِ، وتساعد المتأخرة بإذنها. والمهام مطلوبة من الجميع: الكل يجيب ويسجّل ويناقش ومستعدّ للحديث؛ والمجموعة لا تتقدّم إلا حين تُنهي جميع عضواتها.</div></section>`;
-h+=`<section class="z-sec" id="z4"><div class="z-h"><i>4</i><h3>رحلة المحطة في خمس خطوات</h3></div><p class="z-sub">نشاطٌ واحد مصمَّم بإتقان، تسكن فيه المحاور كلها. هذا هو الهيكل الذي تستطيعين نقله إلى أي درس.</p><div class="z-steps">`+
+h+=H('حصة أ. سارة نموذجاً: المحاور التسعة في هدف واحد','هكذا سكنت المحاور التسعة هدفاً واحداً من حصة أشباه الموصلات للصف الحادي عشر، دون أن تُضاف أنشطة منفصلة.','z3')+`<div class="z-model"><div class="gl"><b>الهدف الثاني</b><p>أن تفسّر الطالبة تكوّن شبه الموصل من النوع السالب n</p><em>التهيئة ← الشرح ← التجربة ← المستويات ← الغلق</em></div>
+ <div class="z-mg">${SARA.map((x,i)=>`<div class="z-mc" style="--k:${AXK[i]}"><h4><i>${i+1}</i>${AXN[i]}</h4><p>${x[0]}</p><small>${x[1]}</small></div>`).join('')}</div>
+ <div class="ft"><span>﴿إِنَّ اللَّهَ يَأْمُرُكُمْ أَن تُؤَدُّوا الْأَمَانَاتِ إِلَىٰ أَهْلِهَا﴾</span><br>القيمة: <b>الأمانة العلمية</b>؛ نسجّل قراءة الأميتر كما ظهرت، لا كما توقّعناها</div></div></section>`;
+h+=H('رحلة المحطة في خمس خطوات','نشاطٌ واحد مصمَّم بإتقان، تسكن فيه المحاور كلها. هذا هو الهيكل الذي تستطيعين نقله إلى أي درس.','z4')+`<div class="z-steps">`+
  STEPD.map(s=>`<div class="z-st"><b>${s[0]}</b><p>${s[1]}</p><em>${s[2]}</em></div>`).join('')+`</div><div class="z-fbk">وبعد كل خطوة: تغذية راجعة فورية «ما تحقق · الدليل · الخطوة التالية»</div></section>`;
-h+=`<section class="z-sec" id="z5"><div class="z-h"><i>5</i><h3>التمايز: سؤال واحد بثلاثة مستويات</h3></div><p class="z-sub">ليست ثلاث أوراق لثلاث فئات ثابتة… بل هدف واحد للجميع، تبدأ كل طالبة من مستواها ثم ترتقي. مثال من محطة مجزئ الجهد:</p><div class="z-lv">
+h+=H('التمايز: سؤال واحد بثلاثة مستويات','ليست ثلاث أوراق لثلاث فئات ثابتة… بل هدف واحد للجميع، تبدأ كل طالبة من مستواها ثم ترتقي. مثال من محطة مجزئ الجهد:','z5')+`<div class="z-lv">
  <div class="z-card"><div class="e">🌱</div><b>الدعم</b><p>القانون مكتوب أمامها، وخطوات موجّهة تمسك بيدها.</p><div class="q">احسبي V2 باستخدام القانون: <span dir="ltr">V2 = V × R2 / (R1 + R2)</span></div></div>
  <div class="z-card"><div class="e">⚡</div><b>الأساسي</b><p>تطبيق مباشر للمفهوم دون مساندة.</p><div class="q">مصدر <span dir="ltr">12 V</span> ومقاومتان <span dir="ltr">50 Ω</span> و<span dir="ltr">70 Ω</span>: كم الجهد على كلٍّ منهما؟</div></div>
  <div class="z-card"><div class="e">👑</div><b>التمكّن</b><p>تصميم أو تنبؤ أو حلّ مشكلة مفتوحة.</p><div class="q">صمّمي دائرة تشغّل مصباح <span dir="ltr">3 V</span> من مصدر <span dir="ltr">12 V</span> دون أن يحترق.</div></div></div></section>`;
-h+=`<section class="z-sec" id="z6"><div class="z-h"><i>6</i><h3>مختبر التغذية الراجعة</h3></div><p class="z-sub">أجابت طالبة عن سؤال مجزئ الجهد. اختاري الردّ الذي يُسرّع تعلّمها:</p><div class="z-fbq">
+h+=H('مختبر التغذية الراجعة','أجابت طالبة عن سؤال مجزئ الجهد. اختاري الردّ الذي يُسرّع تعلّمها:','z6')+`<div class="z-fbq">
  <div class="z-ans">«التيار الكلي: <span dir="ltr">I = 12 / 120 = 0.1 A</span>، إذن الجهد على R2: <span dir="ltr">V2 = 0.1 × 50 = 5 V</span>»</div>
  <div class="z-ops">${FB.map((f,i)=>`<button type="button" data-i="${i}">${f.t}</button>`).join('')}</div><div class="z-out" id="zFbOut" hidden></div>
  <div class="z-3"><div><b>ما تحقق</b>ابدئي بما أصابت فيه</div><div><b>الدليل</b>سمّي الخطأ بدقة</div><div><b>الخطوة التالية</b>خطوة تنفّذها الآن</div></div></div></section>`;
-h+=`<section class="z-sec" id="z7"><div class="z-h"><i>7</i><h3>اعتراضات… وحلول جاهزة</h3></div><p class="z-sub">بطاقة أ. أوم الحمراء؛ الأسئلة التي تخطر لكل معلمة حين تسمع عن المحاور، وحلولها التي جرّبناها معاً.</p><div class="z-ob">`+
+h+=H('العدسات الأربع: أداة ملاحظة لصفّكِ','في كل جولة حملت كل معلمة عدسةً ترصد بها محورين. خذي الأسئلة معكِ، وانظري بها إلى حصتكِ أو حصة زميلتكِ في الزيارات التبادلية.','z7')+`<div class="z-grid">`+
+ LENS.map((l,k)=>`<div class="z-card z-lens"><b>${l[0]}</b><small>${l[1]}</small><ul>${LENSQ[k].map(q=>`<li>${q}</li>`).join('')}</ul></div>`).join('')+`</div></section>`;
+h+=H('اعتراضات… وحلول جاهزة','بطاقة أ. أوم الحمراء؛ الأسئلة التي تخطر لكل معلمة حين تسمع عن المحاور، وحلولها التي جرّبناها معاً.','z8')+`<div class="z-ob">`+
  OHMS.map((o,i)=>`<div class="z-obc"><div class="z-q"><span class="who">🟥 اعتراض</span><p>${o.q}</p></div><button type="button" data-o="${i}">✓ الحل الجاهز</button><div class="z-sol" hidden><ul>${o.a.map(x=>`<li>${x}</li>`).join('')}</ul><div class="f">${o.f}</div></div></div>`).join('')+`</div></section>`;
-h+=`<section class="z-sec" id="z8"><div class="z-h"><i>8</i><h3>المعامل الافتراضية الخمسة</h3></div><p class="z-sub">كل محطة بأنشطتها كاملة: التوقّع والتجربة وتحدّي القراءة والمهمة المتمايزة والتحقق من Copilot. ادخلي، وجرّبي، وأعيدي، واعرضيها على طالباتكِ في الصف.</p><div class="z-stn">`+
+h+=H('المعامل الافتراضية الخمسة','كل محطة بأنشطتها كاملة، بلا وقت ولا نقاط: جرّبي بهدوء، وأعيدي. وحين تعرضينها على طالباتكِ اختاري «👩‍🎓 وضع الطالبات» في أعلى المعمل: تختفي ملاحظات المعلمة، وتصير المستويات مستكشفة ومحلّلة ومبتكرة، وتُشجَّع كل طالبة باسمها عند كل إجابة صحيحة.','z9')+`<div class="z-stn">`+
  ST2.map((s,k)=>{const e=EN[k]||{};return `<div class="z-sn"><div class="im" style="background-image:url(${(e.img||[])[0]||''})"></div><div class="bd"><span class="k">المحطة ${k+1} · الكتاب ص ${s[2]}</span><b>${s[0]}</b>
  ${e.real?`<div class="rw"><i>من الحياة:</i> ${e.real}</div>`:''}${e.qa?`<div class="rw"><i>من قطر:</i> ${e.qa}</div>`:''}${e.su?`<div class="rw"><i>الاستدامة:</i> ${e.su}</div>`:''}
  <button type="button" class="go" data-k="${k}">🔬 ادخلي المعمل</button></div></div>`}).join('')+`</div></section>`;
-h+=`<section class="z-sec" id="z9"><div class="z-h"><i>9</i><h3>التزامي في صفّي</h3></div><p class="z-sub">اختاري ما ستبدئين به، واكتبي التزامكِ؛ يُحفظ على جهازكِ لتعودي إليه.</p><div class="z-cm"><div class="z-chk">${FIXC.map((f,i)=>`<label><input type="checkbox" data-c="${i}"><span>${f[1]}</span></label>`).join('')}</div>
- <textarea id="zNote" placeholder="في درسي القادم سأبدأ بـ…"></textarea><small id="zSaved">يُحفظ تلقائياً على هذا الجهاز.</small></div></section>`;
+h+=H('خطّطي حصتكِ القادمة بالمحاور التسعة','اختاري درساً وهدفاً واحداً، واكتبي كيف سيسكنه كل محور، ثم اطبعي مخطّطكِ. يُحفظ ما تكتبينه على جهازكِ.','z10')+`<div class="z-pl">
+ <div class="top"><label>الدرس<input id="pL" placeholder="مثال: أشباه الموصلات"></label><label>الهدف<input id="pG" placeholder="مثال: أن تفسّر الطالبة تكوّن شبه الموصل من النوع السالب n"></label></div>
+ <div class="z-rows">${AXN.map((a,i)=>`<label>${i+1}. ${a} <span>${PQ[i]}</span><textarea data-p="${i}"></textarea></label>`).join('')}
+ <label>الآية والقيمة <span>آية تربط المفهوم بالقرآن الكريم، وقيمة تسكن الشرح</span><textarea data-p="9"></textarea></label></div>
+ <div class="z-act"><button type="button" class="p" id="pPrint">🖨 اطبعي مخطّطكِ</button><button type="button" class="g" id="pEx">املئي بمثال حصة أ. سارة</button><button type="button" class="g" id="pClr">مسح</button></div></div></section>`;
 h+=`<div class="z-end"><div class="t">شكراً لأنكِ كنتِ معنا</div><p>كنتِ إضافةً جميلة في «يوم فيزيائي استثنائي»، ونرجو أن يكون هذا الزاد عوناً لكِ في صفّكِ، ونوراً لطالباتكِ؛ ﴿وَقُل رَّبِّ زِدْنِي عِلْمًا﴾.</p><div class="s">مدرسة الشيماء الثانوية للبنات · قسم الفيزياء · 10 نوفمبر 2026</div></div>`;
 Z.innerHTML=h;
-/* equation sim */
-const zF=Z.querySelector('#zF'),zA=Z.querySelector('#zA'),zM=Z.querySelector('#zM');
-function sim(){const F=+zF.value,A=+zA.value,M=+zM.value,acc=(F*A)/M,p=Math.max(4,Math.min(100,acc/20*100));
- Z.querySelector('#zBall').style.right=`calc(${p}% - ${p*0.38}px)`;Z.querySelector('#zRun').style.width=p+'%';
- Z.querySelector('#zRead').innerHTML=p>=85?'<b>تسارعٌ مذهل!</b> استراتيجية قوية مع تغذية راجعة بنّاءة… الطالبة تنطلق.':p>=50?'<b>تقدّمٌ جيد.</b> زيدي جودة التغذية الراجعة لتتسارع أكثر.':A<=3?'<b>قوةٌ بلا تسارع.</b> الاستراتيجية وحدها لا تكفي؛ التغذية الراجعة هي ما يغيّر السرعة.':'<b>الطالبة تتحرّك ببطء.</b> كلما زاد التحدي، احتاجت قوة أكبر وتغذية راجعة أدق.'}
-[zF,zA,zM].forEach(x=>x.addEventListener('input',sim));sim();
-/* flips */
 Z.querySelectorAll('.z-ax').forEach(c=>{const t=()=>c.classList.toggle('on');c.addEventListener('click',t);c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t()}})});
-/* feedback lab */
 Z.querySelectorAll('.z-ops button').forEach(b=>b.onclick=()=>{const f=FB[+b.dataset.i];Z.querySelectorAll('.z-ops button').forEach(x=>x.classList.remove('ok','no'));b.classList.add(f.ok?'ok':'no');const o=Z.querySelector('#zFbOut');o.hidden=false;o.innerHTML=(f.ok?'✅ ':'💡 ')+f.why});
-/* objections */
 Z.querySelectorAll('.z-obc button').forEach(b=>b.onclick=()=>{const s=b.nextElementSibling;s.hidden=!s.hidden;b.textContent=s.hidden?'✓ الحل الجاهز':'إخفاء الحل'});
-/* stations */
-Z.querySelectorAll('.z-sn .go').forEach(b=>b.onclick=()=>{document.querySelector('[data-v="lab"]').click();setTimeout(()=>{try{openStation(+b.dataset.k)}catch(e){}window.scrollTo({top:document.getElementById('v-lab').offsetTop-10,behavior:'smooth'})},60)});
-/* anchors */
+Z.querySelectorAll('.z-sn .go').forEach(b=>b.onclick=()=>{document.querySelector('[data-v="lab"]').click();setTimeout(()=>{try{showPicker();openStation(+b.dataset.k)}catch(e){}window.scrollTo({top:document.getElementById('v-lab').offsetTop-10,behavior:'smooth'})},60)});
 Z.querySelectorAll('.z-map a').forEach(a=>a.onclick=e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})});
-/* commitment */
-const K='zad-commit';let C={};try{C=JSON.parse(localStorage.getItem(K)||'{}')}catch(e){}
-const nt=Z.querySelector('#zNote');nt.value=C.n||'';Z.querySelectorAll('[data-c]').forEach(x=>{x.checked=!!(C.c||{})[x.dataset.c];x.onchange=save});nt.oninput=save;
-function save(){C={n:nt.value,c:{}};Z.querySelectorAll('[data-c]').forEach(x=>{if(x.checked)C.c[x.dataset.c]=1});try{localStorage.setItem(K,JSON.stringify(C));Z.querySelector('#zSaved').textContent='✓ حُفظ على هذا الجهاز'}catch(e){}}
-/* presentation: drop live/event-only slides */
-try{[46,43,42,41,34,33,27,26,25,24,23,22,21,20,18,16,15,5].forEach(i=>SLIDES.splice(i,1))}catch(e){}
-/* back to top */
+/* planner */
+const K='zad-plan';let P={};try{P=JSON.parse(localStorage.getItem(K)||'{}')}catch(e){}
+const F=()=>({L:Z.querySelector('#pL'),G:Z.querySelector('#pG'),T:[...Z.querySelectorAll('[data-p]')]});
+const load=()=>{const f=F();f.L.value=P.L||'';f.G.value=P.G||'';f.T.forEach(t=>t.value=(P.t||[])[+t.dataset.p]||'')};
+const save=()=>{const f=F();P={L:f.L.value,G:f.G.value,t:f.T.map(t=>t.value)};try{localStorage.setItem(K,JSON.stringify(P))}catch(e){}};
+load();Z.querySelectorAll('#pL,#pG,[data-p]').forEach(x=>x.addEventListener('input',save));
+Z.querySelector('#pEx').onclick=()=>{const f=F();if(f.T.some(t=>t.value.trim())&&!confirmSoft())return;f.L.value='أشباه الموصلات · الصف الحادي عشر';f.G.value='أن تفسّر الطالبة تكوّن شبه الموصل من النوع السالب n';f.T.forEach(t=>{const i=+t.dataset.p;t.value=i<9?plain(SARA[i][0]):'﴿إِنَّ اللَّهَ يَأْمُرُكُمْ أَن تُؤَدُّوا الْأَمَانَاتِ إِلَىٰ أَهْلِهَا﴾ · الأمانة العلمية: نسجّل القراءة كما ظهرت، لا كما توقّعناها'});save()};
+function confirmSoft(){const b=Z.querySelector('#pEx');if(b.dataset.arm){delete b.dataset.arm;b.textContent='املئي بمثال حصة أ. سارة';return true}b.dataset.arm=1;b.textContent='سيُستبدل ما كتبتِه… اضغطي مرة أخرى للتأكيد';setTimeout(()=>{delete b.dataset.arm;b.textContent='املئي بمثال حصة أ. سارة'},5000);return false}
+Z.querySelector('#pClr').onclick=()=>{const b=Z.querySelector('#pClr');if(!b.dataset.arm){b.dataset.arm=1;b.textContent='اضغطي مرة أخرى للمسح';setTimeout(()=>{delete b.dataset.arm;b.textContent='مسح'},4000);return}delete b.dataset.arm;b.textContent='مسح';const f=F();f.L.value='';f.G.value='';f.T.forEach(t=>t.value='');save()};
+let pr=document.getElementById('zPrint');if(!pr){pr=document.createElement('div');pr.id='zPrint';document.body.appendChild(pr)}
+const esc=t=>String(t||'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])).replace(/\n/g,'<br>');
+Z.querySelector('#pPrint').onclick=()=>{save();pr.innerHTML=`<h1>مخطّط حصتي بالمحاور التسعة</h1><div class="m">زاد · هدية ملتقى «يوم فيزيائي استثنائي» · مدرسة الشيماء الثانوية للبنات · قسم الفيزياء</div><table><tr><th>الدرس</th><td>${esc(P.L)}</td></tr><tr><th>الهدف</th><td>${esc(P.G)}</td></tr>${AXN.map((a,i)=>`<tr><th>${i+1}. ${a}</th><td>${esc((P.t||[])[i])}</td></tr>`).join('')}<tr><th>الآية والقيمة</th><td>${esc((P.t||[])[9])}</td></tr></table>`;
+ document.body.classList.add('zprint');setTimeout(()=>{window.print();setTimeout(()=>document.body.classList.remove('zprint'),500)},50)};
+/* presentation: drop live/event-only slides (original indexes) */
+try{[46,43,42,41,34,33,27,26,25,24,23,22,21,20,19,18,16,15,14,13,12,10,5,3].forEach(i=>SLIDES.splice(i,1))}catch(e){}
+/* labs: calm practice mode — no timers, no points, no group talk */
+try{
+ startTimer=function(sec,box){clearInterval(timerId);const el=box&&box.querySelector('.timer');if(el)el.textContent=''};
+ award=function(base,ok){if(curSt!=null){const t=TL[curSt]=TL[curSt]||{ok:0,n:0,pts:0};t.n++;if(ok)t.ok++}return 0};
+ bonus=function(){};boost=function(){};
+ const _fb=fb;fb=function(ok,a,b,c){return _fb(ok,String(a).replace(/\s*\(\+\d+\)/g,''),b,c)};
+ cheer=function(Lv,ok){return ok?`<div class="cheer l${Lv}"><span class="ch-ic">✓</span><div><b>إجابة صحيحة</b><span>${Lv<2?'جرّبي المستوى الأعلى… أنتِ قدّها':'وصلتِ مستوى التمكّن'}</span></div></div>`:`<div class="cheer soft"><span class="ch-ic">💡</span><div><b>الخطأ أول خطوة للفهم</b><span>اقرئي التغذية الراجعة، ثم جرّبي مستوى آخر.</span></div></div>`};
+ doneCard=function(k){return `<div class="donecard"><div class="seal">✓</div><b>أنجزتِ المحطة ${k+1}: ${ST[k][0]}</b><span class="dst">جرّبي محطة أخرى، أو أعيدي هذه المحطة مع طالباتكِ.</span><div class="row" style="justify-content:center;margin-top:10px"><button class="btn gold" id="again2" type="button">← كل المحطات</button></div></div>`};
+}catch(e){}
+
+/* student mode: private names on this device, motivating levels, praise */
+try{
+ const SK='zad-students',MK='zad-mode';let SN=[];try{SN=JSON.parse(localStorage.getItem(SK)||'[]')}catch(e){}
+ let SM=false;try{SM=localStorage.getItem(MK)==='s'}catch(e){}
+ const STN=['المهمة المتمايزة','تحدّي المستويات'];
+ const lab=document.getElementById('v-lab');const bar=document.createElement('div');bar.className='z-sbar';
+ bar.innerHTML=`<div class="z-seg" role="group" aria-label="وضع المعمل"><button type="button" data-m="t">👩‍🏫 وضع المعلمة</button><button type="button" data-m="s">👩‍🎓 وضع الطالبات</button></div>
+  <div class="z-who" id="zWho"><span>الطالبة الآن:</span><select id="zStu" aria-label="الطالبة الآن"></select><button type="button" id="zNext">التالية ◀</button><button type="button" id="zNames">✏️ أسماء طالباتي</button></div>`;
+ const nb=document.createElement('div');nb.className='z-nb';nb.hidden=true;
+ nb.innerHTML=`<b style="color:#7A1F35">أسماء طالباتي</b><small>اكتبي اسم كل طالبة في سطر. تُحفظ الأسماء على جهازكِ هذا فقط، ولا تصل إلى أي معلمة أخرى ولا إلى أي خادم.</small><textarea id="zNT" placeholder="نورة&#10;مريم&#10;شيخة"></textarea><div class="r"><button type="button" id="zNS">حفظ الأسماء</button></div>`;
+ lab.prepend(nb);lab.prepend(bar);
+ const sel=bar.querySelector('#zStu');
+ const fill=()=>{const cur=sel.value;sel.innerHTML=(SN.length?SN:['بطلتنا']).map(n=>`<option>${n.replace(/</g,'')}</option>`).join('');if(SN.includes(cur))sel.value=cur};
+ const apply=()=>{document.body.classList.toggle('smode',SM);document.body.classList.toggle('noanno',SM);window.LVN3=SM?['🔭 مستكشفة','🧩 محلّلة','💡 مبتكرة']:null;
+  try{STEPS[3]=STN[SM?1:0];STEPN[3]=STN[SM?1:0]}catch(e){}
+  bar.querySelectorAll('[data-m]').forEach(b=>b.setAttribute('aria-pressed',(b.dataset.m==='s')===SM));bar.querySelector('#zWho').hidden=!SM;if(!SM)nb.hidden=true;
+  try{if(curSt!=null&&!$('#lab-vd').hidden)runStation(curSt)}catch(e){}};
+ bar.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{SM=b.dataset.m==='s';try{localStorage.setItem(MK,SM?'s':'t')}catch(e){}apply()});
+ bar.querySelector('#zNames').onclick=()=>{nb.hidden=!nb.hidden;nb.querySelector('#zNT').value=SN.join('\n')};
+ nb.querySelector('#zNS').onclick=()=>{SN=nb.querySelector('#zNT').value.split('\n').map(x=>x.trim()).filter(Boolean).slice(0,60);try{localStorage.setItem(SK,JSON.stringify(SN))}catch(e){}fill();nb.hidden=true};
+ bar.querySelector('#zNext').onclick=()=>{if(!sel.options.length)return;sel.selectedIndex=(sel.selectedIndex+1)%sel.options.length};
+ fill();apply();
+ const PR=['إجابة عالمة فيزياء! 🔬','عقلٌ مضيء كالمصباح في دائرتكِ 💡','تفكيركِ يسري كالتيار… بلا مقاومة ⚡','هكذا تفكّر المبدعات 👑','دقّة تستحق التصفيق 👏','نجمةٌ في سماء الفيزياء 🌟','أنتِ قدّها… والقادم أجمل ✨'];
+ const pz=document.createElement('div');pz.className='z-praise';pz.setAttribute('aria-live','polite');document.body.appendChild(pz);let pzT=0;
+ window.zPraise=function(){if(!SM)return;const nm=sel.value||'بطلتنا';pz.innerHTML=`<b>أحسنتِ يا ${nm}!</b><span>${PR[Math.floor(Math.random()*PR.length)]}</span>`;pz.classList.add('on');clearTimeout(pzT);pzT=setTimeout(()=>pz.classList.remove('on'),2300);
+  for(let i=0;i<14;i++)setTimeout(()=>{const h=document.createElement('div');h.textContent=['⭐','✨','🌟','💖','🎉'][i%5];h.setAttribute('aria-hidden','true');h.style.cssText=`position:fixed;bottom:-40px;left:${6+Math.random()*88}%;font-size:${24+Math.random()*18}px;z-index:94;pointer-events:none;transition:transform 2.2s cubic-bezier(.2,.7,.3,1),opacity 2.2s`;document.body.appendChild(h);requestAnimationFrame(()=>{h.style.transform=`translate(${(Math.random()-.5)*80}px,-${55+Math.random()*30}vh) rotate(${(Math.random()-.5)*60}deg)`;h.style.opacity='0'});setTimeout(()=>h.remove(),2400)},i*70)};
+ const _aw=award;award=function(base,ok){const r=_aw(base,ok);if(ok)window.zPraise();return r};
+ const _ch=cheer;cheer=function(Lv,ok,D){if(!SM)return _ch(Lv,ok,D);const nm=sel.value||'بطلتنا';return ok?`<div class="cheer l${Lv}"><span class="ch-ic">${['🔭','🧩','💡'][Lv]||'🌟'}</span><div><b>رائعة يا ${nm}!</b><span>${Lv<2?'جرّبي المستوى الذي بعده… أنتِ قدّها':'وصلتِ القمّة… مبتكرة حقيقية'}</span></div></div>`:`<div class="cheer soft"><span class="ch-ic">💪</span><div><b>ولا يهمّكِ يا ${nm}</b><span>الخطأ أول خطوة للفهم؛ اقرئي التغذية الراجعة وجرّبي مرة أخرى.</span></div></div>`};
+}catch(e){console.error(e)}
 const tp=document.createElement('button');tp.className='z-top';tp.type='button';tp.setAttribute('aria-label','إلى الأعلى');tp.textContent='↑';tp.onclick=()=>window.scrollTo({top:0,behavior:'smooth'});document.body.appendChild(tp);
 })();
 </script>
-
 </body></html>
